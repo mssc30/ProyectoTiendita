@@ -8,6 +8,8 @@ using System.Web.UI.WebControls;
 using ProyectoTiendita.DATOS;
 using ProyectoTiendita.POJOS;
 using System.Data;
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace ProyectoTiendita.VISTA
 {
@@ -73,7 +75,7 @@ namespace ProyectoTiendita.VISTA
                 row["NOMBRE"] = p.nombre;
                 row["PRECIO"] = p.precio;
                 row["IMAGEN"] = p.foto;
-                row["AGREGAR AL CARRITO"] = false;
+                row["AGREGAR AL CARRITO"] = true;
                 table.Rows.Add(row);
             }
 
@@ -81,8 +83,10 @@ namespace ProyectoTiendita.VISTA
             view = new DataView(table);
 
             // Set a DataGrid control's DataSource to the DataView.
-            dgvProductos.DataSource = view;
-            
+            dgvProductos.DataSource = view;  
+            dgvProductos.DataBind();
+
+
             if (!String.IsNullOrEmpty((String)(Session["usuario"]))) { 
 
                 userActual = (String)(Session["usuario"]);
