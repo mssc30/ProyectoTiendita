@@ -72,14 +72,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="VISTA\CRUDCliente.aspx" />
+    <Content Include="VISTA\CRUDProductos.aspx" />
     <Content Include="VISTA\CRUDUsuarios.aspx" />
     <Content Include="VISTA\LoginAdmin.aspx" />
-    <Content Include="VISTA\LoginClientes.aspx" />
     <Content Include="VISTA\Principal.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DATOS\daoCliente.cs" />
+    <Compile Include="DATOS\daoProducto.cs" />
     <Compile Include="DATOS\daoUsuario.cs" />
     <Compile Include="POJOS\Cliente.cs" />
     <Compile Include="POJOS\DetallePedido.cs" />
@@ -95,6 +96,13 @@
     <Compile Include="VISTA\CRUDCliente.aspx.designer.cs">
       <DependentUpon>CRUDCliente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VISTA\CRUDProductos.aspx.cs">
+      <DependentUpon>CRUDProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VISTA\CRUDProductos.aspx.designer.cs">
+      <DependentUpon>CRUDProductos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VISTA\CRUDUsuarios.aspx.cs">
       <DependentUpon>CRUDUsuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -108,13 +116,6 @@
     </Compile>
     <Compile Include="VISTA\LoginAdmin.aspx.designer.cs">
       <DependentUpon>LoginAdmin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="VISTA\LoginClientes.aspx.cs">
-      <DependentUpon>LoginClientes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="VISTA\LoginClientes.aspx.designer.cs">
-      <DependentUpon>LoginClientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="VISTA\Principal.aspx.cs">
       <DependentUpon>Principal.aspx</DependentUpon>

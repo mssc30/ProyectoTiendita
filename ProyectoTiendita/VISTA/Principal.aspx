@@ -10,11 +10,11 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:Button ID="btnPedido" runat="server" Text="Hacer Pedido" />
 &nbsp;<asp:Button ID="btnVerPedidos" runat="server" Text="Ver Pedidos" />
-&nbsp;<asp:Button ID="btnProductosCRUD" runat="server" Text="CRUD productos" />
-&nbsp;<asp:Button ID="btnUsersCRUD" runat="server" Text="CRUD usuarios" />
-&nbsp;<asp:Button ID="btnPerfil" runat="server" Text="Perfil" />
+&nbsp;<asp:Button ID="btnProductosCRUD" runat="server" Text="CRUD productos" OnClick="btnProductosCRUD_Click" />
+&nbsp;<asp:Button ID="btnUsersCRUD" runat="server" Text="CRUD usuarios" OnClick="btnUsersCRUD_Click" />
+&nbsp;<asp:Button ID="btnPedido" runat="server" Text="Hacer Pedido" />
+&nbsp;<asp:Button ID="btnPerfil" runat="server" Text="Perfil" OnClick="btnPerfil_Click" />
 &nbsp;<asp:Button ID="btnIniciarSesion" runat="server" OnClick="btnIniciarSesion_Click" Text="Iniciar Sesion" />
             <br />
         </div>
