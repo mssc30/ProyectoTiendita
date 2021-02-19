@@ -33,6 +33,11 @@ namespace ProyectoTiendita.VISTA
             Response.Redirect("CRUDCliente.aspx", true);
         }
 
+        protected void btnVerPedidos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Pedidos.aspx", true);
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             daoProducto = new daoProducto();
