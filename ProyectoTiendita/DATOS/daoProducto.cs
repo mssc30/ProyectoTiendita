@@ -9,7 +9,7 @@ namespace ProyectoTiendita.DATOS
 {
     public class daoProducto
     {
-        String conexion = "server=remotemysql.com; database=OhfuHemABZ; producto=OhfuHemABZ; pwd=Fo9zYFclIV";
+        String conexion = "server=remotemysql.com; database=OhfuHemABZ; user=OhfuHemABZ; pwd=Fo9zYFclIV";
         public List<Producto> obtenerTodos()
         {
             ///CREAR CONEXION, MODIFICARLA, USARLA
@@ -55,7 +55,7 @@ namespace ProyectoTiendita.DATOS
 
         }
 
-        public Producto obtenerUno(String idProducto)
+        public Producto obtenerUno(int idProducto)
         {
             ///CREAR CONEXION, MODIFICARLA, USARLA
             MySqlConnection cn = new MySqlConnection();
@@ -143,7 +143,7 @@ namespace ProyectoTiendita.DATOS
                 cn.Open();
                 ///EJECUTAR COMANDO
                 string strSQL = "UPDATE PRODUCTOS SET NOMBRE = @NOMBRE, " +
-                    "PRECIO = @PRECIO, ESTADO = @ESTADO, FOTO = @FOTO" +
+                    "PRECIO = @PRECIO, ESTADO = @ESTADO, FOTO = @FOTO " +
                     "WHERE ID_PRODUCTO = @ID";
 
                 MySqlCommand comando = new MySqlCommand(strSQL, cn);
@@ -169,7 +169,7 @@ namespace ProyectoTiendita.DATOS
             }
         }
 
-        public Boolean eliminarProducto(String productoID)
+        public Boolean eliminarProducto(int productoID)
         {
             ///CREAR, MODIFICAR LA CONEXION 
             MySqlConnection cn = new MySqlConnection();

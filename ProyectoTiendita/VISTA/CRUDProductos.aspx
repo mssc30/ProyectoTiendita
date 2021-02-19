@@ -11,29 +11,29 @@
     <form id="form1" runat="server">
         <div>
             Nombre<br />
-            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
             <br />
             Precio<br />
-            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtPrecio" runat="server"></asp:TextBox>
             <br />
             Estado<br />
-            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtEstado" runat="server"></asp:TextBox>
             <br />
             Fotografia<br />
-            <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtFoto" runat="server"></asp:TextBox>
             <br />
             <br />
-            <asp:Button ID="btnAgregar" runat="server" Text="Agregar" />
-&nbsp;<asp:Button ID="btnModificar" runat="server" Text="Modificar" />
-&nbsp;<asp:Button ID="btnEliminar" runat="server" Text="Eliminar" />
+            <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
+&nbsp;<asp:Button ID="btnModificar" runat="server" Text="Modificar" Enabled="False" OnClick="btnModificar_Click" />
+&nbsp;<asp:Button ID="btnEliminar" runat="server" Text="Eliminar" Enabled="False" OnClick="btnEliminar_Click" />
 &nbsp;<br />
             <br />
             ID
             <asp:TextBox ID="txtID" runat="server"></asp:TextBox>
-&nbsp;<asp:Button ID="btnBuscar" runat="server" Text="Buscar" />
+&nbsp;<asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
             <br />
             <br />
-            <asp:GridView ID="GridView1" runat="server">
+            <asp:GridView ID="dgvProductos" runat="server">
             </asp:GridView>
         </div>
     </form>
