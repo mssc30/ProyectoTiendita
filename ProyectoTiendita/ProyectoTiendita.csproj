@@ -71,15 +71,58 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="VISTA\CRUDCliente.aspx" />
+    <Content Include="VISTA\CRUDUsuarios.aspx" />
+    <Content Include="VISTA\LoginAdmin.aspx" />
+    <Content Include="VISTA\LoginClientes.aspx" />
+    <Content Include="VISTA\Principal.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DATOS\daoCliente.cs" />
+    <Compile Include="DATOS\daoUsuario.cs" />
     <Compile Include="POJOS\Cliente.cs" />
     <Compile Include="POJOS\DetallePedido.cs" />
+    <Compile Include="POJOS\Encriptar.cs" />
     <Compile Include="POJOS\Pedido.cs" />
     <Compile Include="POJOS\Producto.cs" />
     <Compile Include="POJOS\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VISTA\CRUDCliente.aspx.cs">
+      <DependentUpon>CRUDCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VISTA\CRUDCliente.aspx.designer.cs">
+      <DependentUpon>CRUDCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\CRUDUsuarios.aspx.cs">
+      <DependentUpon>CRUDUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VISTA\CRUDUsuarios.aspx.designer.cs">
+      <DependentUpon>CRUDUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\LoginAdmin.aspx.cs">
+      <DependentUpon>LoginAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VISTA\LoginAdmin.aspx.designer.cs">
+      <DependentUpon>LoginAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\LoginClientes.aspx.cs">
+      <DependentUpon>LoginClientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VISTA\LoginClientes.aspx.designer.cs">
+      <DependentUpon>LoginClientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VISTA\Principal.aspx.cs">
+      <DependentUpon>Principal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VISTA\Principal.aspx.designer.cs">
+      <DependentUpon>Principal.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -90,10 +133,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DATOS\" />
-    <Folder Include="VISTA\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
