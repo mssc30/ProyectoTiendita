@@ -21,6 +21,7 @@
             <br />
             <br />
             <asp:Button ID="btnEntrar" runat="server" OnClick="btnEntrar_Click" Text="Iniciar Sesion" />
+            &nbsp;<asp:Button ID="btnRegistrarse" runat="server" OnClick="btnRegistrarse_Click" Text="Registrarse" />
             <br />
             <br />
             <asp:Label ID="lblError" runat="server" Text="-"></asp:Label>
