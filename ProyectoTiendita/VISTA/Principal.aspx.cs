@@ -82,6 +82,7 @@ namespace ProyectoTiendita.VISTA
 
             // Set a DataGrid control's DataSource to the DataView.
             dgvProductos.DataSource = view;
+            dgvProductos.DataBind();
             
             if (!String.IsNullOrEmpty((String)(Session["usuario"]))) { 
 
