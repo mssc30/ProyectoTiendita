@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DATOS\daoCliente.cs" />
+    <Compile Include="DATOS\daoPedido.cs" />
     <Compile Include="DATOS\daoUsuario.cs" />
     <Compile Include="POJOS\Cliente.cs" />
     <Compile Include="POJOS\DetallePedido.cs" />

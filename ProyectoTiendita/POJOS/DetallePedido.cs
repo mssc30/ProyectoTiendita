@@ -11,9 +11,9 @@ namespace ProyectoTiendita.POJOS
     /// </summary>
     public class DetallePedido
     {
-        int numPedido { get; set; }
-        int idProducto { get; set; }
-        int cantidad { get; set; }
+        public int numPedido { get; set; }
+        public int idProducto { get; set; }
+        public int cantidad { get; set; }
 
         public DetallePedido(int numPedido, int idProducto, int cantidad)
         {
