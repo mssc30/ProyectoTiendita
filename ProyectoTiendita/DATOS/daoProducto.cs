@@ -9,7 +9,7 @@ namespace ProyectoTiendita.DATOS
 {
     public class daoProducto
     {
-        String conexion = "server=remotemysql.com; database=OhfuHemABZ; producto=OhfuHemABZ; pwd=Fo9zYFclIV";
+        String conexion = "server=remotemysql.com; database=OhfuHemABZ; user=OhfuHemABZ; pwd=Fo9zYFclIV";
         public List<Producto> obtenerTodos()
         {
             ///CREAR CONEXION, MODIFICARLA, USARLA

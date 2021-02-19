@@ -20,13 +20,7 @@
         </div>
         <br />
         PRODUCTOS<br />
-        <asp:GridView ID="dgvProductos" runat="server" AutoGenerateColumns="False">
-            <Columns>
-                <asp:BoundField HeaderText="NOMBRE PRODUCTO" />
-                <asp:BoundField HeaderText="PRECIO" />
-                <asp:BoundField HeaderText="IMAGEN" />
-                <asp:CheckBoxField HeaderText="AGREGAR AL CARRITO" />
-            </Columns>
+        <asp:GridView ID="dgvProductos" runat="server">
         </asp:GridView>
     </form>
 </body>
