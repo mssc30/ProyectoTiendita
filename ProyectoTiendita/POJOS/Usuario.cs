@@ -10,11 +10,11 @@ namespace ProyectoTiendita.POJOS
     /// </summary>
     public class Usuario
     {
-        String usuario { get; set; }
-        String contrasena { get; set; }
-        String nombre { get; set; }
-        String apellidos { get; set; }
-        String telefono { get; set; }
+        public String usuario { get; set; }
+        public String contrasena { get; set; }
+        public String nombre { get; set; }
+        public String apellidos { get; set; }
+        public String telefono { get; set; }
 
         public Usuario(String usuario, String contrasena, String nombre, String apellidos, String telefono)
         {
