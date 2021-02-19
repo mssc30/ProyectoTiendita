@@ -13,9 +13,15 @@ namespace ProyectoTiendita.VISTA
     {
         String user, contra;
         daoUsuario daoUsuario = new daoUsuario();
+        daoCliente daoCliente = new daoCliente();
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnRegistrarse_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CRUDCliente.aspx", true);
         }
 
         protected void btnEntrar_Click(object sender, EventArgs e)
@@ -23,19 +29,36 @@ namespace ProyectoTiendita.VISTA
             user = txtUser.Text.ToString();
             contra = Encriptar.MD5(txtContra.Text.ToString());
 
-
-
-            if (daoUsuario.autenticar(user, Encriptar.MD5(contra)))
+            if (chkAdmin.Checked)
             {
-                //ABRIR PAGINA DE INICIO
-                Session["admin"] = user;
-                Session["isAdmin"] = true;
-                Response.Redirect("CRUDCliente.aspx", true);
+                if (daoUsuario.autenticar(user, contra))
+                {
+                    //ABRIR PAGINA DE INICIO
+                    Session["usuario"] = user;
+                    Session["isAdmin"] = "cierto";
+                    Session["sesion"] = "cierto";
+                    Response.Redirect("Principal.aspx", true);
+                }
+                else
+                {
+                    lblError.Text = "USUARIO O CONTRASEÑA INCORRECTOS";
+                    lblError.Visible = true;
+                }
             }
             else
             {
-                lblError.Text = "USUARIO O CONTRASEÑA INCORRECTOS";
-                lblError.Visible = true;
+                if (daoCliente.autenticar(user, contra))
+                {
+                    //ABRIR PAGINA DE INICIO
+                    Session["sesion"] = "cierto";
+                    Session["usuario"] = user;
+                    Response.Redirect("Principal.aspx", true);
+                }
+                else
+                {
+                    lblError.Text = "USUARIO O CONTRASEÑA INCORRECTOS";
+                    lblError.Visible = true;
+                }
             }
         }
     }

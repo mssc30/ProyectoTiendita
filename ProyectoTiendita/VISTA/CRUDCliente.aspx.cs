@@ -18,8 +18,7 @@ namespace ProyectoTiendita.VISTA
         String nombre, apellidos, direccion, telefono, email, contrasena;
 
         //CUANDO HAYA SESION INICIADA
-        Boolean sesion;
-        String userActual; //CAMBIAR DESPUES 
+        String userActual;
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
@@ -27,6 +26,10 @@ namespace ProyectoTiendita.VISTA
             {
                 daoCliente.eliminarCliente(userActual);
                 //CERRAR SESION, MANDAR A PAGINA DE INICIO
+                Session["usuario"] = null;
+                Session["isAdmin"] = null;
+                Session["sesion"] = null;
+                Response.Redirect("Principal.aspx");
             }
             catch (Exception)
             {
@@ -36,17 +39,22 @@ namespace ProyectoTiendita.VISTA
 
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            //LLAMAR A LOG IN
+            Response.Redirect("LoginAdmin.aspx");
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            sesion = (Boolean)(Session["sesion"]);
-            userActual = (String)(Session["usuario"]);
+            if (!String.IsNullOrEmpty((String)(Session["usuario"])))
+            {
+                userActual = (String)(Session["usuario"]);
+            }
+
+            //sesion = true;
+            //userActual = "koko@gmail.com";
 
             if (!Page.IsPostBack) {
             //si la sesion esta iniciada
-                if (sesion)
+                if (!String.IsNullOrEmpty((String)(Session["sesion"])))
                     {
                         btnRegistrar.Visible = false;
                         btnIniciarSesion.Visible = false;
@@ -112,8 +120,9 @@ namespace ProyectoTiendita.VISTA
             try
             {
                 daoCliente.agregar(cliente);
-                //LLAMAR A LOG IN
-            }catch(Exception )
+                Response.Redirect("LoginAdmin.aspx", true);
+            }
+            catch(Exception )
             {
 
             }
