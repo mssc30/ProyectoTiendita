@@ -10,6 +10,7 @@ namespace ProyectoTiendita.VISTA
 {
     public partial class Pedidos : System.Web.UI.Page
     {
+
         int index_seleccionado = -1;
         daoPedido daopedido; 
         protected void Page_Load(object sender, EventArgs e)
@@ -19,6 +20,7 @@ namespace ProyectoTiendita.VISTA
                 btnModificar.Enabled = false;
             }
             daopedido = new daoPedido();
+            //CARGAR LA INFORMACION DE LA BASE DE DATOS A LA TABLA
             dgvPedidos.DataSource = daopedido.obtenerTodos();
             dgvPedidos.DataBind();
         }
@@ -42,6 +44,7 @@ namespace ProyectoTiendita.VISTA
         {
             if (index_seleccionado != -1)
             {
+                //MODIFICAR EL ESTADO DEL PEDIDO
                 daopedido.modificarPedido(daopedido.obtenerTodos()[index_seleccionado]);
             }
             index_seleccionado = -1;

@@ -10,7 +10,14 @@ namespace ProyectoTiendita.DATOS
 {
     public class daoPedido
     {
+        //CADENA DE CONEXION A LA BASE DE DATOS EN LA NUBE
         String conexion = "server=remotemysql.com; database=OhfuHemABZ; user=OhfuHemABZ; pwd=Fo9zYFclIV";
+        
+        /// <summary>
+        /// EL METODO OBTENER TODOS SE USA PARA REALIZAR UNA CONSULTA A LA BASE DE DATOS 
+        /// EN LA NUBE
+        /// </summary>
+        /// <returns>RETORNA UNA LISTA CON LOS PEDIDOS QUE ESTEN REGISTRADOS EN LA BD</returns>
         public List<Pedido> obtenerTodos()
         {
             ///CREAR CONEXION, MODIFICARLA, USARLA
@@ -56,7 +63,11 @@ namespace ProyectoTiendita.DATOS
             }
 
         }
-
+        /// <summary>
+        /// METODO USADO PARA OBTENER LOS PEDIDOS CON RESPECTO A UN ID DE CLIENTE
+        /// </summary>
+        /// <param name="email">ID DEL CLIENTE</param>
+        /// <returns>LISTA DE PEDIDOS QUE CONCUERDEN CON EL ID DEL CLIENTE</returns>
         public List<Pedido> obtenerTodosCliente(String email)
         {
             ///CREAR CONEXION, MODIFICARLA, USARLA
@@ -104,6 +115,11 @@ namespace ProyectoTiendita.DATOS
 
         }
 
+        /// <summary>
+        /// METODO USADO PARA OBTENER LOS PEDIDOS CON RESPECTO AL ESTADO QUE SE ENCUENTRA EL PEDIDO
+        /// </summary>
+        /// <param name="estado">ESTADO ACTUAL DEL PEDIDO</param>
+        /// <returns>LISTA DE PEDIDOS QUE CONCUERDEN CON EL ESTADO DEL PEDIDO</returns>
         public List<Pedido> obtenerTodosEstado(int estado)
         {
             ///CREAR CONEXION, MODIFICARLA, USARLA
@@ -151,6 +167,11 @@ namespace ProyectoTiendita.DATOS
 
         }
 
+        /// <summary>
+        /// METODO USADO PARA OBTENER UN SOLO PEDIDO
+        /// </summary>
+        /// <param name="idPedido">ID DEL PEDIDO</param>
+        /// <returns>OBJETO DE TIPO PEDIDO QUE CONCUERDA CON EL ID RECIBIDO COMO PARAMETRO</returns>
         public Pedido obtenerUno(int idPedido)
         {
             ///CREAR CONEXION, MODIFICARLA, USARLA
@@ -197,6 +218,11 @@ namespace ProyectoTiendita.DATOS
 
         }
 
+        /// <summary>
+        /// METODO PARA MODIFICAR EL ESTADO DE UN PEDIDO
+        /// </summary>
+        /// <param name="pedido">PEDIDO DEL CUAL SE VA A MODIFICAR EL PEDIDO</param>
+        /// <returns>VALOR BOLEANO QUE REPRESENTA SI SE MODIFICO O NO</returns>
         public Boolean modificarPedido(Pedido pedido)
         {
             ///CREAR, MODIFICAR, USAR LA CONEXION
@@ -230,6 +256,12 @@ namespace ProyectoTiendita.DATOS
             }
         }
 
+        /// <summary>
+        /// METODO PARA AGREGAR A LA BASE DE DATOS UN PEDIDO CON SUS RESPECTIVOS DETALLES
+        /// </summary>
+        /// <param name="pedido">OBJETO TIPO PEDIDO QUE REPRESENTA EL NUEVO PEDIDO QUE SE VA A AGREGAR</param>
+        /// <param name="detalles">LISTA DE DETALLES CORRESPONDIENTES AL PEDIDO</param>
+        /// <returns>VALOR BOLEANO QUE REPRESENTA SI SE AGREGO O NO</returns>
         public Boolean agregar(Pedido pedido, List<DetallePedido> detalles)
         {
             ///CREAR, MODIFICAR Y USAR LA CONEXION
