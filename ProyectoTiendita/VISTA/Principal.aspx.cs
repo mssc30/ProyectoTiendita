@@ -49,8 +49,7 @@ namespace ProyectoTiendita.VISTA
             DataColumn column;
             DataRow row;
             DataView view;
-
-            // Create new DataColumn, set DataType, ColumnName and add to DataTable.
+            
             column = new DataColumn();
             column.DataType = System.Type.GetType("System.String");
             column.ColumnName = "NOMBRE";
@@ -68,10 +67,15 @@ namespace ProyectoTiendita.VISTA
             column.ColumnName = "IMAGEN";
             table.Columns.Add(column);
 
+            
             column = new DataColumn();
             column.DataType = Type.GetType("System.Boolean");
             column.ColumnName = "AGREGAR AL CARRITO";
             table.Columns.Add(column);
+
+
+            dgvProductos.Columns.Clear();
+
 
             // Create new DataRow objects and add to DataTable.
             foreach (Producto p in daoProducto.obtenerTodos())
@@ -80,15 +84,28 @@ namespace ProyectoTiendita.VISTA
                 row["NOMBRE"] = p.nombre;
                 row["PRECIO"] = p.precio;
                 row["IMAGEN"] = p.foto;
-                row["AGREGAR AL CARRITO"] = true;
+                row["AGREGAR AL CARRITO"]= true;
                 table.Rows.Add(row);
+
+
             }
 
             // Create a DataView using the DataTable.
             view = new DataView(table);
-
             // Set a DataGrid control's DataSource to the DataView.
-            dgvProductos.DataSource = view;  
+            dgvProductos.DataSource = view;
+
+            foreach (DataColumn dc in table.Columns)
+            {
+                ButtonField bf = new ButtonField();
+                bf.CommandName = dc.ColumnName+"";
+                bf.DataTextField = dc.ColumnName;
+                bf.ImageUrl = "https://cdn.icon-icons.com/icons2/259/PNG/128/ic_add_shopping_cart_128_28122.png";
+                bf.ButtonType = ButtonType.Image;
+                dgvProductos.Columns.Add(bf);
+                break;
+            }
+
             dgvProductos.DataBind();
 
 
@@ -119,6 +136,10 @@ namespace ProyectoTiendita.VISTA
             }
         }
 
+        protected void dgvProductos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            Label1.Text = "Ente:D" + e.CommandArgument;
+        }
 
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
         {
@@ -132,6 +153,11 @@ namespace ProyectoTiendita.VISTA
                 Session["isAdmin"] = null;
                 Session["sesion"] = null;
             }
+        }
+
+        public void onClick()
+        {
+            
         }
     }
 }
