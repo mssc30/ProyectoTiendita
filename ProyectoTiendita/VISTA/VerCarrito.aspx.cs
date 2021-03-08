@@ -13,15 +13,15 @@ namespace ProyectoTiendita.VISTA
 {
     public partial class VerCarrito : System.Web.UI.Page
     {
-        String ruta = @"C:\Users\Jesus Ramirez Ayala\Desktop\productos.xml";
+        String rutaAux = @"C:\Users\Jesus Ramirez Ayala\Desktop\productos.xml";
         String rutaPedidos = @"C:\Users\Jesus Ramirez Ayala\Desktop\pedidos.xml";
         daoCliente daoCliente;
         protected void Page_Load(object sender, EventArgs e)
         {
             daoCliente = new daoCliente();
-            if (File.Exists(ruta))
+            if (File.Exists(rutaAux))
             {
-                XDocument document = XDocument.Load(ruta);
+                XDocument document = XDocument.Load(rutaAux);
                 var result = from elemento in document.Descendants("producto")
                              select new
                              {
@@ -38,7 +38,7 @@ namespace ProyectoTiendita.VISTA
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            File.Delete(ruta);
+            File.Delete(rutaAux);
         }
 
         protected void btnConfirmar_Click(object sender, EventArgs e)
@@ -47,7 +47,7 @@ namespace ProyectoTiendita.VISTA
             {
                 String idUsuario = (String)(Session["usuario"]);
                 Cliente user = daoCliente.obtenerUno(idUsuario);
-                XDocument documentoP = XDocument.Load(ruta);
+                XDocument documentoP = XDocument.Load(rutaAux);
                 XDocument document = new XDocument(new XDeclaration("1.0", "utf-8", null));
                 XElement nodoRaiz = new XElement("pedidos");
                 document.Add(nodoRaiz);
@@ -62,6 +62,7 @@ namespace ProyectoTiendita.VISTA
                     pedido.Add(x);
                 }
                 document.Save(rutaPedidos);
+                File.Delete(rutaAux);
             }
             
         }
