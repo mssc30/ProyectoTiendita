@@ -12,11 +12,11 @@
         <div>
             <asp:Label ID="Label1" runat="server" Text="Detalles del Pedido"></asp:Label>
             <br />
-            <asp:GridView ID="GridView1" runat="server">
+            <asp:GridView ID="dgvPedido" runat="server">
             </asp:GridView>
             <br />
-            <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar Pedido" />
-&nbsp;<asp:Button ID="btnCancelar" runat="server" Text="Cancelar Pedido" />
+            <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar Pedido" OnClick="btnConfirmar_Click" />
+&nbsp;<asp:Button ID="btnCancelar" runat="server" Text="Cancelar Pedido" OnClick="btnCancelar_Click" />
         </div>
     </form>
 </body>
