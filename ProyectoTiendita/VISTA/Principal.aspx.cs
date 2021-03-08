@@ -10,6 +10,9 @@ using ProyectoTiendita.POJOS;
 using System.Data;
 using System.Windows.Forms;
 using System.Drawing;
+using System.IO;
+using System.Xml.Linq;
+using System.Xml;
 
 namespace ProyectoTiendita.VISTA
 {
@@ -17,7 +20,9 @@ namespace ProyectoTiendita.VISTA
     {
         String userActual, isAdmin, sesion;
         daoProducto daoProducto;
-
+        daoUsuario daoUsuario;
+        List<Producto> listaProd;
+        String ruta = @"C:\Users\Jesus Ramirez Ayala\Desktop\productos.xml";
         protected void btnProductosCRUD_Click(object sender, EventArgs e)
         {
             Response.Redirect("CRUDProductos.aspx", true);
@@ -40,8 +45,9 @@ namespace ProyectoTiendita.VISTA
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            listaProd= new List<Producto>();
             daoProducto = new daoProducto();
-
+            daoUsuario = new daoUsuario();
             // Create new DataTable and DataSource objects.
             DataTable table = new DataTable();
 
@@ -67,24 +73,17 @@ namespace ProyectoTiendita.VISTA
             column.ColumnName = "IMAGEN";
             table.Columns.Add(column);
 
-            
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.Boolean");
-            column.ColumnName = "AGREGAR AL CARRITO";
-            table.Columns.Add(column);
-
 
             dgvProductos.Columns.Clear();
-
+            listaProd = daoProducto.obtenerTodos();
 
             // Create new DataRow objects and add to DataTable.
-            foreach (Producto p in daoProducto.obtenerTodos())
+            foreach (Producto p in listaProd)
             {
                 row = table.NewRow();
                 row["NOMBRE"] = p.nombre;
                 row["PRECIO"] = p.precio;
                 row["IMAGEN"] = p.foto;
-                row["AGREGAR AL CARRITO"]= true;
                 table.Rows.Add(row);
 
 
@@ -133,12 +132,66 @@ namespace ProyectoTiendita.VISTA
                 btnVerPedidos.Visible = false;
                 btnProductosCRUD.Visible = false;
                 btnUsersCRUD.Visible = false;
+                dgvProductos.Columns[0].Visible = false;
             }
         }
 
         protected void dgvProductos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             Label1.Text = "Ente:D" + e.CommandArgument;
+            int IdProd = listaProd[Int32.Parse(e.CommandArgument + "")].idProducto;
+            String nombreProd= listaProd[Int32.Parse(e.CommandArgument + "")].nombre;
+            double precio = listaProd[Int32.Parse(e.CommandArgument + "")].precio;
+            if (!File.Exists(ruta))
+            {
+                XDocument document = new XDocument(new XDeclaration("1.0", "utf-8", null));
+                XElement nodoRaiz = new XElement("productos");
+                document.Add(nodoRaiz);
+                XElement nodo = new XElement("producto");
+                nodo.Add(new XElement("IdProducto", IdProd));
+                nodo.Add(new XElement("Nombre", nombreProd));
+                nodo.Add(new XElement("Cantidad", 1));
+                nodo.Add(new XElement("Subtotal", precio));
+                nodoRaiz.Add(nodo);
+                document.Save(ruta);
+            }
+            else
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(ruta);
+
+                XmlNode node;
+                node = doc.DocumentElement;
+                bool existe = false;
+                foreach (XmlNode node1 in node.ChildNodes)
+                {
+                    if (node1.ChildNodes[0].InnerText.Equals(IdProd+""))
+                    {
+                        existe = true;
+                        node1.ChildNodes[2].InnerText = (Int32.Parse(node1.ChildNodes[2].InnerText)+1)+"";
+                        node1.ChildNodes[3].InnerText = (Double.Parse(node1.ChildNodes[2].InnerText)*precio) + "";
+                        doc.Save(ruta);
+                        break;
+                    }
+                }
+                if (!existe)
+                {
+                    XDocument document = XDocument.Load(ruta);
+                    XElement nodo = new XElement("producto");
+                    nodo.Add(new XElement("IdProducto", IdProd));
+                    nodo.Add(new XElement("Nombre", nombreProd));
+                    nodo.Add(new XElement("Cantidad", 1));
+                    nodo.Add(new XElement("Subtotal", precio));
+                    document.Root.Add(nodo);
+                    document.Save(ruta);
+                }
+            }
+        }
+
+        protected void btnPedido_Click(object sender, EventArgs e)
+        {
+         
+            Response.Redirect("VerCarrito.aspx",true);
         }
 
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
@@ -153,11 +206,6 @@ namespace ProyectoTiendita.VISTA
                 Session["isAdmin"] = null;
                 Session["sesion"] = null;
             }
-        }
-
-        public void onClick()
-        {
-            
         }
     }
 }
