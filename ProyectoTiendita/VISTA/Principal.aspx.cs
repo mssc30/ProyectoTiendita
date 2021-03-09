@@ -22,7 +22,7 @@ namespace ProyectoTiendita.VISTA
         daoProducto daoProducto;
         daoUsuario daoUsuario;
         List<Producto> listaProd;
-        String ruta = @"C:\Users\Jesus Ramirez Ayala\Desktop\productos.xml";
+        String ruta = @"d:\productos.xml";
         protected void btnProductosCRUD_Click(object sender, EventArgs e)
         {
             Response.Redirect("CRUDProductos.aspx", true);
@@ -138,7 +138,7 @@ namespace ProyectoTiendita.VISTA
 
         protected void dgvProductos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            Label1.Text = "Ente:D" + e.CommandArgument;
+            // Label1.Text = "Ente:D" + e.CommandArgument;
             int IdProd = listaProd[Int32.Parse(e.CommandArgument + "")].idProducto;
             String nombreProd= listaProd[Int32.Parse(e.CommandArgument + "")].nombre;
             double precio = listaProd[Int32.Parse(e.CommandArgument + "")].precio;

@@ -13,8 +13,12 @@ namespace ProyectoTiendita.VISTA
 {
     public partial class VerCarrito : System.Web.UI.Page
     {
-        String rutaAux = @"C:\Users\Jesus Ramirez Ayala\Desktop\productos.xml";
-        String rutaPedidos = @"C:\Users\Jesus Ramirez Ayala\Desktop\pedidos.xml";
+        //String rutaAux = @"C:\Users\Jesus Ramirez Ayala\Desktop\productos.xml";
+        //String rutaPedidos = @"C:\Users\Jesus Ramirez Ayala\Desktop\pedidos.xml";
+
+        String rutaAux = @"d:\productos.xml";
+        String rutaPedidos = @"d:\pedidos.xml";
+
         daoCliente daoCliente;
         protected void Page_Load(object sender, EventArgs e)
         {
