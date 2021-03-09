@@ -16,11 +16,13 @@ namespace ProyectoTiendita.VISTA
     {
         //RUTA DE LOS ARCHIVOS XML 
         String rutaAux;
-        String rutaPedidos = @"C:\Users\Jesus Ramirez Ayala\Desktop\pedidos.xml";
+        //String rutaPedidos = @"C:\Users\Jesus Ramirez Ayala\Desktop\pedidos.xml";
+        String rutaPedidos = @"d:\pedidos.xml";
         daoCliente daoCliente;
         protected void Page_Load(object sender, EventArgs e)
         {
-            rutaAux = @"C:\Users\Jesus Ramirez Ayala\Desktop\Carrito" + ((String)Session["usuario"]) + ".xml";
+            //rutaAux = @"C:\Users\Jesus Ramirez Ayala\Desktop\Carrito" + ((String)Session["usuario"]) + ".xml";
+            rutaAux = @"d:\Carrito" + ((String)Session["usuario"]) + ".xml";
             daoCliente = new daoCliente();
         //SE VERIFICA SI EL ARCHIVO XML DE PRODUCTOS EXISTE
             if (File.Exists(rutaAux))

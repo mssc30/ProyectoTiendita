@@ -12,6 +12,11 @@
         <div>
             <asp:Label ID="Label1" runat="server" Text="REGISTRO DE PEDIDOS"></asp:Label>
             <br />
+            <asp:GridView ID="dgvPedidos" runat="server" Height="50px" OnRowCommand="dgvPedidos_RowCommand">
+                <Columns>
+                    <asp:BoundField HtmlEncode="False"/>
+                </Columns>
+            </asp:GridView>
             <br />
         </div>
     </form>
