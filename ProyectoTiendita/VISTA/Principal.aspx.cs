@@ -22,7 +22,7 @@ namespace ProyectoTiendita.VISTA
         daoProducto daoProducto;
         daoUsuario daoUsuario;
         List<Producto> listaProd;
-        String ruta = @"C:\Users\Jesus Ramirez Ayala\Desktop\productos.xml";
+        String ruta;
         protected void btnProductosCRUD_Click(object sender, EventArgs e)
         {
             Response.Redirect("CRUDProductos.aspx", true);
@@ -45,7 +45,9 @@ namespace ProyectoTiendita.VISTA
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            listaProd= new List<Producto>();
+            //RUTA DONDE SE ALMACENARA EL ARCHIVO XML
+            ruta=@"C:\Users\Jesus Ramirez Ayala\Desktop\Carrito" + ((String)(Session["usuario"])) + ".xml";
+            listaProd = new List<Producto>();
             daoProducto = new daoProducto();
             daoUsuario = new daoUsuario();
             // Create new DataTable and DataSource objects.
@@ -94,6 +96,7 @@ namespace ProyectoTiendita.VISTA
             // Set a DataGrid control's DataSource to the DataView.
             dgvProductos.DataSource = view;
 
+            //CICLO USADO PARA COLOCAR LOS BOTONES DENTRO DE LA TABLA PRODUCTOS
             foreach (DataColumn dc in table.Columns)
             {
                 ButtonField bf = new ButtonField();
@@ -136,14 +139,18 @@ namespace ProyectoTiendita.VISTA
             }
         }
 
+        //ESTE METODO SE DESENCADENA CUANDO SE LE DA CLIC AL BOTON QUE ESTA DENTRO DE LA TABLA
+        //PRODUCTOS
         protected void dgvProductos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            Label1.Text = "Ente:D" + e.CommandArgument;
+            //SE OBTIENE INFORMACION DEL PRODUCTO QUE SE AGREGO AL CARRITO
             int IdProd = listaProd[Int32.Parse(e.CommandArgument + "")].idProducto;
             String nombreProd= listaProd[Int32.Parse(e.CommandArgument + "")].nombre;
             double precio = listaProd[Int32.Parse(e.CommandArgument + "")].precio;
+            //IMPLEMENTACION DE XML PARA EL MANEJO DE LOS PRODUCTOS QUE ACTUALMENTE SE ENCUENTRAN EN EL CARRITO
             if (!File.Exists(ruta))
             {
+            //CUANDO ES CREADO POR PRIMERA VES SE CREA EL DOCUMENTO CON SU NODO RAIZ
                 XDocument document = new XDocument(new XDeclaration("1.0", "utf-8", null));
                 XElement nodoRaiz = new XElement("productos");
                 document.Add(nodoRaiz);
@@ -157,6 +164,7 @@ namespace ProyectoTiendita.VISTA
             }
             else
             {
+            //SI YA ESTA CREADO EL DOCUMENTO SE APLICAN VALIDACIONES PARA NO REPETIR PRODUCTOS Y SOLO MODIFICAR LA CANTIDAD
                 XmlDocument doc = new XmlDocument();
                 doc.Load(ruta);
 
@@ -190,7 +198,6 @@ namespace ProyectoTiendita.VISTA
 
         protected void btnPedido_Click(object sender, EventArgs e)
         {
-         
             Response.Redirect("VerCarrito.aspx",true);
         }
 
