@@ -46,7 +46,8 @@ namespace ProyectoTiendita.VISTA
         protected void Page_Load(object sender, EventArgs e)
         {
             //RUTA DONDE SE ALMACENARA EL ARCHIVO XML
-            ruta=@"C:\Users\Jesus Ramirez Ayala\Desktop\Carrito" + ((String)(Session["usuario"])) + ".xml";
+            //ruta=@"C:\Users\Jesus Ramirez Ayala\Desktop\Carrito" + ((String)(Session["usuario"])) + ".xml";
+            ruta = @"d:\Carrito" + ((String)(Session["usuario"])) + ".xml";
             listaProd = new List<Producto>();
             daoProducto = new daoProducto();
             daoUsuario = new daoUsuario();
@@ -87,8 +88,6 @@ namespace ProyectoTiendita.VISTA
                 row["PRECIO"] = p.precio;
                 row["IMAGEN"] = p.foto;
                 table.Rows.Add(row);
-
-
             }
 
             // Create a DataView using the DataTable.

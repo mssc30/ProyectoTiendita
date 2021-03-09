@@ -67,14 +67,12 @@ namespace ProyectoTiendita.DATOS
         /// <param name="pedido">OBJETO TIPO PEDIDO QUE REPRESENTA EL NUEVO PEDIDO QUE SE VA A AGREGAR</param>
         /// <param name="detalles">LISTA DE DETALLES CORRESPONDIENTES AL PEDIDO</param>
         /// <returns>VALOR BOLEANO QUE REPRESENTA SI SE AGREGO O NO</returns>
-        public Boolean agregar(Pedido pedido, List<DetallePedido> detalles)
+        public Boolean agregar(Pedido pedido)
         {
             ///CREAR, MODIFICAR Y USAR LA CONEXION
             MySqlConnection cn = new MySqlConnection();
             cn.ConnectionString = conexion;
             cn.Open();
-            //INICIA UN TRANSACCION
-            MySqlTransaction mySqlTransaction = cn.BeginTransaction();
             try
             {
 
@@ -87,24 +85,10 @@ namespace ProyectoTiendita.DATOS
                 comando.Parameters.AddWithValue("CLAVE_PEDIDO", pedido.clave);
                 comando.ExecuteNonQuery();
                 comando.Dispose();
-
-                foreach(DetallePedido detalle in detalles){
-                    ///EJECUTAR COMANDO
-                    string strSQL2 = "INSERT INTO DETALLE_DE_PEDIDOS (CLAVE_PEDIDO, ID_PRODUCTO, CANTIDAD)" +
-                        "VALUES (@CLAVE_PEDIDO, @ID_PRODUCTO, @CANTIDAD)";
-                    MySqlCommand comando2 = new MySqlCommand(strSQL2, cn);
-                    comando2.Parameters.AddWithValue("CLAVE_PEDIDO", detalle.numPedido);
-                    comando2.Parameters.AddWithValue("ID_PRODUCTO", detalle.idProducto);
-                    comando2.Parameters.AddWithValue("CANTIDAD", detalle.cantidad);
-                    comando2.ExecuteNonQuery();
-                    comando2.Dispose();
-                }
-                mySqlTransaction.Commit();
                 return true;
             }
             catch (Exception e)
             {
-                mySqlTransaction.Rollback();
                 throw e;
             }
             finally

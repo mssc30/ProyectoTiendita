@@ -90,6 +90,7 @@
     <Compile Include="POJOS\DetallePedido.cs" />
     <Compile Include="POJOS\Encriptar.cs" />
     <Compile Include="POJOS\Pedido.cs" />
+    <Compile Include="POJOS\PedidoAux.cs" />
     <Compile Include="POJOS\Producto.cs" />
     <Compile Include="POJOS\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
