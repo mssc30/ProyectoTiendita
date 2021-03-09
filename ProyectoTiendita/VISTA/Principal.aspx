@@ -23,7 +23,6 @@
         <asp:GridView ID="dgvProductos" runat="server" OnRowCommand="dgvProductos_RowCommand">
         </asp:GridView>
         <br />
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
     </form>
 </body>
 </html>

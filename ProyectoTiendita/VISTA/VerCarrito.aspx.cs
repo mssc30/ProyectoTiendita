@@ -50,7 +50,8 @@ namespace ProyectoTiendita.VISTA
             if (File.Exists(rutaAux))
             {
                 File.Delete(rutaAux);
-                Response.Redirect("VerCarrito.aspx", true);
+                Response.Redirect("Principal.aspx", true);
+
             }
         }
 
@@ -151,6 +152,9 @@ namespace ProyectoTiendita.VISTA
                     }
                 }
                 File.Delete(rutaAux);
+
+                Response.Redirect("Principal.aspx", true);
+
             }
         }
     }
