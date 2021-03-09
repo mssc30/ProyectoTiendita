@@ -101,7 +101,7 @@ namespace ProyectoTiendita.VISTA
                 ButtonField bf = new ButtonField();
                 bf.CommandName = dc.ColumnName+"";
                 bf.DataTextField = dc.ColumnName;
-                bf.ImageUrl = "https://cdn.icon-icons.com/icons2/259/PNG/128/ic_add_shopping_cart_128_28122.png";
+                bf.ImageUrl = "https://i.ibb.co/Gn2ZQPs/15649512571605802262-32.png";
                 bf.ButtonType = ButtonType.Image;
                 dgvProductos.Columns.Add(bf);
                 break;

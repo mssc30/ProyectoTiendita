@@ -113,7 +113,7 @@ namespace ProyectoTiendita.VISTA
                 bf.CommandName = dc.ColumnName.ToString();
                 bf.DataTextField = dc.ColumnName;
                 bf.ButtonType = ButtonType.Image;
-                bf.ImageUrl = "https://cdn-31.anonfiles.com/P5Y3zc10r0/b5c95b8c-1615310980/11875166141558096434-32.png";
+                bf.ImageUrl = "https://i.ibb.co/372MhgM/11875166141558096434-32.png";
                 dgvPedidos.Columns.Add(bf);
                 break;
             }
