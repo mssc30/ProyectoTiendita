@@ -11,12 +11,20 @@ namespace ProyectoTiendita.VISTA
 {
     public partial class LoginAdmin : System.Web.UI.Page
     {
+
+        protected void btnIniciarSesion_Click(object sender, EventArgs e)
+        {
+            
+                Response.Redirect("Principal.aspx", true);
+            
+        }
+
         String user, contra;
         daoUsuario daoUsuario = new daoUsuario();
         daoCliente daoCliente = new daoCliente();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblError.Visible = false;
         }
 
         protected void btnRegistrarse_Click(object sender, EventArgs e)
@@ -41,7 +49,6 @@ namespace ProyectoTiendita.VISTA
                 }
                 else
                 {
-                    lblError.Text = "USUARIO O CONTRASEÑA INCORRECTOS";
                     lblError.Visible = true;
                 }
             }
@@ -56,7 +63,6 @@ namespace ProyectoTiendita.VISTA
                 }
                 else
                 {
-                    lblError.Text = "USUARIO O CONTRASEÑA INCORRECTOS";
                     lblError.Visible = true;
                 }
             }

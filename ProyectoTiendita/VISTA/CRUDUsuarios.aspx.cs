@@ -11,6 +11,30 @@ namespace ProyectoTiendita.VISTA
 {
     public partial class CRUDUsuarios : System.Web.UI.Page
     {
+        protected void btnProductosCRUD_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CRUDProductos.aspx", true);
+        }
+
+        protected void btnUsersCRUD_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Principal.aspx", true);
+        }
+
+        protected void btnIniciarSesion_Click(object sender, EventArgs e)
+        {
+            Session["usuario"] = null;
+            Session["isAdmin"] = null;
+            Session["sesion"] = null;
+            Response.Redirect("LoginAdmin.aspx", true);
+        }
+
+        protected void btnVerPedidos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Pedidos.aspx", true);
+        }
+
+
         String usuario, contrasenia, nombre, apellidos, telefono;
         Usuario user;
         static Usuario antiguo;
@@ -108,7 +132,10 @@ namespace ProyectoTiendita.VISTA
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            llenarTabla();
+            if (!String.IsNullOrEmpty((String)(Session["isAdmin"])))
+                llenarTabla();
+            else
+                Response.Redirect("LoginAdmin.aspx", true);
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)

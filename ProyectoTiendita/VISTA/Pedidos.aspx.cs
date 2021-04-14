@@ -15,9 +15,33 @@ namespace ProyectoTiendita.VISTA
 {
     public partial class Pedidos : System.Web.UI.Page
     {
+
+        protected void btnProductosCRUD_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CRUDProductos.aspx", true);
+        }
+
+        protected void btnUsersCRUD_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CRUDUsuarios.aspx", true);
+        }
+
+        protected void btnIniciarSesion_Click(object sender, EventArgs e)
+        {
+            Session["usuario"] = null;
+            Session["isAdmin"] = null;
+            Session["sesion"] = null;
+            Response.Redirect("LoginAdmin.aspx", true);
+        }
+
+        protected void btnVerPedidos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Principal.aspx", true);
+        }
+
         //String rutaPedidos = @"C:\Users\Jesus Ramirez Ayala\Desktop\pedidos.xml";
         String rutaPedidos = @"d:\pedidos.xml";
-        
+
 
         //METODO PARA LLENAR LA TABLA
         public void obtenerPedidos()
@@ -36,8 +60,9 @@ namespace ProyectoTiendita.VISTA
                 foreach (XElement pedido in poli.Elements("usuario"))
                 {
                     //SI ESE USUARIO CUENTA CON UN PEDIDO ACTIVO
-                    if (pedido.Element("pedido") != null) {
-                        
+                    if (pedido.Element("pedido") != null)
+                    {
+
                         //OBTIENE LOS VALORES DEL NODO
                         String clave = pedido.Element("pedido").Element("IdPedido").Value;
                         Double total = 0;
@@ -123,13 +148,15 @@ namespace ProyectoTiendita.VISTA
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            obtenerPedidos();   
-            
+            if (!String.IsNullOrEmpty((String)(Session["isAdmin"])))
+                obtenerPedidos();
+            else
+                Response.Redirect("LoginAdmin.aspx", true);
         }
 
         protected void dgvPedidos_RowCommand(object sender, GridViewCommandEventArgs e)
