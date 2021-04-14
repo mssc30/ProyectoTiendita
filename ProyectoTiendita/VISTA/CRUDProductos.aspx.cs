@@ -12,6 +12,37 @@ namespace ProyectoTiendita.VISTA
 
     public partial class CRUDProductos : System.Web.UI.Page
     {
+        protected void btnProductosCRUD_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Principal.aspx", true);
+        }
+
+        protected void btnUsersCRUD_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CRUDUsuarios.aspx", true);
+        }
+
+        protected void btnIniciarSesion_Click(object sender, EventArgs e)
+        {
+                Session["usuario"] = null;
+                Session["isAdmin"] = null;
+                Session["sesion"] = null;
+                Response.Redirect("LoginAdmin.aspx", true);
+        }
+
+        protected void btnVerPedidos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Pedidos.aspx", true);
+        }
+        protected void dgvProductos_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Cells[4].Text = Server.HtmlDecode(e.Row.Cells[4].Text);
+            }
+        }
+
         daoProducto daoProducto = new daoProducto();
         List<Producto> productos = new List<Producto>();
         Producto producto;
@@ -21,7 +52,10 @@ namespace ProyectoTiendita.VISTA
         double precio;
         protected void Page_Load(object sender, EventArgs e)
         {
-            llenarTabla();
+            if (!String.IsNullOrEmpty((String)(Session["isAdmin"])))
+                llenarTabla();
+            else
+                Response.Redirect("LoginAdmin.aspx", true);
         }
 
         public void llenarTabla()

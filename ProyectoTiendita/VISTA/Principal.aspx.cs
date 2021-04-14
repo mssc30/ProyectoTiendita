@@ -13,12 +13,14 @@ using System.Drawing;
 using System.IO;
 using System.Xml.Linq;
 using System.Xml;
+using System.Windows.Media.Imaging;
+using System.Net;
 
 namespace ProyectoTiendita.VISTA
 {
     public partial class Principal : System.Web.UI.Page
     {
-        String userActual, isAdmin, sesion;
+        String userActual, isAdmin;
         daoProducto daoProducto;
         daoUsuario daoUsuario;
         List<Producto> listaProd;
@@ -87,6 +89,7 @@ namespace ProyectoTiendita.VISTA
                 row["NOMBRE"] = p.nombre;
                 row["PRECIO"] = p.precio;
                 row["IMAGEN"] = p.foto;
+
                 table.Rows.Add(row);
             }
 
@@ -100,6 +103,16 @@ namespace ProyectoTiendita.VISTA
             {
                 ButtonField bf = new ButtonField();
                 bf.CommandName = dc.ColumnName+"";
+                bf.DataTextField = dc.ColumnName;
+                dgvProductos.Columns.Add(bf);
+                break;
+            }
+
+
+            foreach (DataColumn dc in table.Columns)
+            {
+                ButtonField bf = new ButtonField();
+                bf.CommandName = dc.ColumnName + "";
                 bf.DataTextField = dc.ColumnName;
                 bf.ImageUrl = "https://i.ibb.co/Gn2ZQPs/15649512571605802262-32.png";
                 bf.ButtonType = ButtonType.Image;
@@ -134,9 +147,11 @@ namespace ProyectoTiendita.VISTA
                 btnVerPedidos.Visible = false;
                 btnProductosCRUD.Visible = false;
                 btnUsersCRUD.Visible = false;
-                dgvProductos.Columns[0].Visible = false;
+                dgvProductos.Columns[1].Visible = true;
             }
         }
+
+
 
         //ESTE METODO SE DESENCADENA CUANDO SE LE DA CLIC AL BOTON QUE ESTA DENTRO DE LA TABLA
         //PRODUCTOS
@@ -195,6 +210,27 @@ namespace ProyectoTiendita.VISTA
             }
         }
 
+        protected void dgvProductos_RowDataBound(object sender, GridViewRowEventArgs e)
+        { 
+
+            if (String.IsNullOrEmpty((String)(Session["sesion"])) || !String.IsNullOrEmpty((String)(Session["isAdmin"])))
+            {
+                //no hay sesion iniciada
+                e.Row.Cells[1].Visible = false;
+            }
+            else
+            {
+                e.Row.Cells[1].Visible = true;
+            }
+                       
+            e.Row.Cells[0].Visible = false;
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Cells[4].Text = Server.HtmlDecode(e.Row.Cells[4].Text);
+            }
+        }
+
         protected void btnPedido_Click(object sender, EventArgs e)
         {
             Response.Redirect("VerCarrito.aspx",true);
@@ -211,7 +247,10 @@ namespace ProyectoTiendita.VISTA
                 Session["usuario"] = null;
                 Session["isAdmin"] = null;
                 Session["sesion"] = null;
+                Response.Redirect("LoginAdmin.aspx", true);
             }
         }
+
+      
     }
 }

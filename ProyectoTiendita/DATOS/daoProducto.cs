@@ -33,7 +33,7 @@ namespace ProyectoTiendita.DATOS
                         dr.GetString("NOMBRE"),
                         dr.GetDouble("PRECIO"),
                         dr.GetInt32("ESTADO"),
-                        dr.GetString("FOTO")
+                        "<img src='" + dr.GetString("FOTO") + "' class='img - thumbnail' width=200px/>"
                     );
 
                     productos.Add(producto);

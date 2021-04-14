@@ -78,6 +78,24 @@ namespace ProyectoTiendita.VISTA
         protected global::System.Web.UI.WebControls.Button btnIniciarSesion;
 
         /// <summary>
+        /// Control MainScriptManager.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager MainScriptManager;
+
+        /// <summary>
+        /// Control pnlTabla.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel pnlTabla;
+
+        /// <summary>
         /// Control dgvProductos.
         /// </summary>
         /// <remarks>

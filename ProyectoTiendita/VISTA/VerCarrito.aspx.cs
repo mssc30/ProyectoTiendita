@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 using ProyectoTiendita.DATOS;
@@ -21,26 +22,51 @@ namespace ProyectoTiendita.VISTA
         daoCliente daoCliente;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //rutaAux = @"C:\Users\Jesus Ramirez Ayala\Desktop\Carrito" + ((String)Session["usuario"]) + ".xml";
-            rutaAux = @"d:\Carrito" + ((String)Session["usuario"]) + ".xml";
-            daoCliente = new daoCliente();
-        //SE VERIFICA SI EL ARCHIVO XML DE PRODUCTOS EXISTE
-            if (File.Exists(rutaAux))
+            if (!String.IsNullOrEmpty((String)(Session["usuario"])))
             {
-        //SE CARGAN LOS PRODUCTOS QUE FUERON AGREGADOS AL CARRITO DENTRO DE LA TABLA
-                XDocument document = XDocument.Load(rutaAux);
-                var result = from elemento in document.Descendants("producto")
-                             select new
-                             {
+                btnIniciarSesion.Text = "Cerrar Sesion";
 
-                                 IdProducto = elemento.Element("IdProducto").Value,
-                                 Nombre = elemento.Element("Nombre").Value,
-                                 Cantidad = elemento.Element("Cantidad").Value,
-                                 Subtotal = elemento.Element("Subtotal").Value
-                             };
-                dgvPedido.DataSource = result;
-                dgvPedido.DataBind();
+
+                //rutaAux = @"C:\Users\Jesus Ramirez Ayala\Desktop\Carrito" + ((String)Session["usuario"]) + ".xml";
+                rutaAux = @"d:\Carrito" + ((String)Session["usuario"]) + ".xml";
+                daoCliente = new daoCliente();
+                //SE VERIFICA SI EL ARCHIVO XML DE PRODUCTOS EXISTE
+                if (File.Exists(rutaAux))
+                {
+                    //SE CARGAN LOS PRODUCTOS QUE FUERON AGREGADOS AL CARRITO DENTRO DE LA TABLA
+                    XDocument document = XDocument.Load(rutaAux);
+                    var result = from elemento in document.Descendants("producto")
+                                 select new
+                                 {
+
+                                     IdProducto = elemento.Element("IdProducto").Value,
+                                     Nombre = elemento.Element("Nombre").Value,
+                                     Cantidad = elemento.Element("Cantidad").Value,
+                                     Subtotal = elemento.Element("Subtotal").Value
+                                 };
+
+                    dgvPedido.DataSource = result;
+                    dgvPedido.DataBind();
+                }
             }
+            else
+            {
+                Response.Redirect("LoginAdmin.aspx", true);
+            }
+        }
+
+        double total = 0;
+        protected void dgv_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[0].Visible = false;
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (!string.IsNullOrEmpty(e.Row.Cells[3].Text))
+                    total += Convert.ToDouble(e.Row.Cells[3].Text);
+            }
+
+            Label2.Text = "Total de la compra: $"+total.ToString();
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -155,6 +181,31 @@ namespace ProyectoTiendita.VISTA
 
                 Response.Redirect("Principal.aspx", true);
 
+            }
+        }
+
+        protected void btnPerfil_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CRUDCliente.aspx", true);
+        }
+
+        protected void btnPedido_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Principal.aspx", true);
+        }
+
+        protected void btnIniciarSesion_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty((String)(Session["sesion"])))
+            {
+                Response.Redirect("LoginAdmin.aspx", true);
+            }
+            else
+            {
+                Session["usuario"] = null;
+                Session["isAdmin"] = null;
+                Session["sesion"] = null;
+                Response.Redirect("LoginAdmin.aspx", true);
             }
         }
     }

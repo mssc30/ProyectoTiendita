@@ -12,6 +12,33 @@ namespace ProyectoTiendita.VISTA
 
     public partial class CRUDCliente : System.Web.UI.Page
     {
+
+        
+        protected void btnPerfil_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Principal.aspx", true);
+        }
+
+        protected void btnPedido_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("VerCarrito.aspx", true);
+        }
+
+        protected void btnIniciarSesion_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty((String)(Session["sesion"])))
+            {
+                Response.Redirect("LoginAdmin.aspx", true);
+            }
+            else
+            {
+                Session["usuario"] = null;
+                Session["isAdmin"] = null;
+                Session["sesion"] = null;
+                Response.Redirect("LoginAdmin.aspx", true);
+            }
+        }
+
         daoCliente daoCliente = new daoCliente();
         Cliente cliente;
         static Cliente viejosDatos;
@@ -37,16 +64,18 @@ namespace ProyectoTiendita.VISTA
             }
         }
 
-        protected void btnIniciarSesion_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("LoginAdmin.aspx");
-        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            btnPedido.Visible = false;
+            
+
             if (!String.IsNullOrEmpty((String)(Session["usuario"])))
             {
                 userActual = (String)(Session["usuario"]);
+                Button1.Text = "Cerrar Sesion";
+                btnPedido.Visible = true;
             }
 
             //sesion = true;
@@ -60,7 +89,8 @@ namespace ProyectoTiendita.VISTA
                         btnIniciarSesion.Visible = false;
                         txtEmail.Enabled = false;
                         cargarDatos();
-                    }
+                    btnIniciarSesion.Text = "Cerrar Sesion";
+                }
                     else
                     {
                         btnEliminar.Visible = false;
