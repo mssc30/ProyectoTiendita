@@ -35,13 +35,13 @@
             <br />
 
              <div class="text-center">
-
+            
             <asp:ScriptManager ID="MainScriptManager" runat="server"/>
-            <asp:UpdatePanel ID="pnlTabla" runat="server">
-            <ContentTemplate>
-                <asp:GridView class="table table-hover align-middle table-responsive" ID="dgvPedido" runat="server" OnRowDataBound="dgv_RowDataBound">
-            </asp:GridView>
-            </ContentTemplate>
+                <asp:UpdatePanel ID="pnlTabla" runat="server">
+                    <ContentTemplate>
+                        <asp:GridView class="table table-hover align-middle table-responsive" ID="dgvPedido" runat="server" OnRowDataBound="dgv_RowDataBound">
+                    </asp:GridView>
+                </ContentTemplate>
             </asp:UpdatePanel>
 
             <br />
