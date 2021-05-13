@@ -49,6 +49,8 @@
       <HintPath>RECURSOS\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -73,16 +75,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\ServiceReference2\wsindicadoreseconomicos.disco" />
+    <None Include="Connected Services\ServiceReference2\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceReference2\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceReference2\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="VISTA\CRUDCliente.aspx" />
     <Content Include="VISTA\CRUDProductos.aspx" />
     <Content Include="VISTA\CRUDUsuarios.aspx" />
     <Content Include="VISTA\LoginAdmin.aspx" />
     <Content Include="VISTA\Pedidos.aspx" />
     <Content Include="VISTA\Principal.aspx" />
+    <Content Include="VISTA\ConsumirServicioExterno.aspx" />
+    <Content Include="VISTA\StyleSheet1.css" />
     <Content Include="VISTA\VerCarrito.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\ServiceReference2\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="DATOS\daoCliente.cs" />
     <Compile Include="DATOS\daoPedido.cs" />
     <Compile Include="DATOS\daoProducto.cs" />
@@ -137,6 +153,13 @@
     <Compile Include="VISTA\Principal.aspx.designer.cs">
       <DependentUpon>Principal.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VISTA\ConsumirServicioExterno.aspx.cs">
+      <DependentUpon>ConsumirServicioExterno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VISTA\ConsumirServicioExterno.aspx.designer.cs">
+      <DependentUpon>ConsumirServicioExterno.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VISTA\VerCarrito.aspx.cs">
       <DependentUpon>VerCarrito.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -146,7 +169,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\ServiceReference2\wsindicadoreseconomicos.wsdl" />
     <None Include="packages.config" />
+    <Content Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -154,7 +179,12 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ServiceReference2\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
