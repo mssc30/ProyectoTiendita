@@ -9,6 +9,8 @@ namespace ProyectoTiendita.POJOS
     /// POJO QUE REPRESENTA UN OBJETO PRODUCTO CON SUS ATRIBUTOS
     /// TIENE CONSTRUCTORES 2 SOBRE CARGADOS
     /// </summary>
+    /// 
+    [Serializable]
     public class Producto
     {
         public int idProducto { get; set; }
@@ -33,5 +35,7 @@ namespace ProyectoTiendita.POJOS
             this.estado = estado;
             this.foto = foto;
         }
+
+        public Producto() { }
     }
 }

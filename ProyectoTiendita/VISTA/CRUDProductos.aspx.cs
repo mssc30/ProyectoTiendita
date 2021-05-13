@@ -12,8 +12,9 @@ namespace ProyectoTiendita.VISTA
 
     public partial class CRUDProductos : System.Web.UI.Page
     {
-        daoProducto daoProducto = new daoProducto();
-        List<Producto> productos = new List<Producto>();
+
+        ServiceReference1.SevicioProductosSoapClient servicio = new ServiceReference1.SevicioProductosSoapClient();
+        //List<Producto> productos = new List<Producto>();
         Producto producto;
         static Producto antiguo;
         String nombre, foto;
@@ -27,9 +28,9 @@ namespace ProyectoTiendita.VISTA
         public void llenarTabla()
         {
             try
-            {
-                productos = daoProducto.obtenerTodos();
-                dgvProductos.DataSource = productos;
+            { 
+                
+                dgvProductos.DataSource = servicio.ObtenerTodos();
                 dgvProductos.DataBind();
             }
             catch (Exception)
@@ -46,11 +47,15 @@ namespace ProyectoTiendita.VISTA
             precio = double.Parse(txtPrecio.Text.ToString());
             idProd = int.Parse(txtID.Text.ToString());
 
-            producto = new Producto(idProd, nombre, precio, estado, foto);
-
+            ServiceReference1.Producto producto = new ServiceReference1.Producto();
+            producto.idProducto = idProd;
+            producto.nombre = nombre;
+            producto.foto = foto;
+            producto.estado = estado;
+            producto.precio = precio;
             try
             {
-                daoProducto.modificarProducto(producto);
+                servicio.ModificarProducto(producto);
                 limpiar();
                 llenarTabla();
                 btnEliminar.Enabled = false;
@@ -64,7 +69,13 @@ namespace ProyectoTiendita.VISTA
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            antiguo = daoProducto.obtenerUno(int.Parse(txtID.Text.ToString()));
+            antiguo = new Producto();
+            ServiceReference1.Producto prod = servicio.ObtenerUno(int.Parse(txtID.Text.ToString()));
+            antiguo.idProducto = prod.idProducto;
+            antiguo.nombre = prod.nombre;
+            antiguo.precio = prod.precio;
+            antiguo.estado = prod.estado;
+            antiguo.foto = prod.foto;
 
             if (antiguo != null)
             {
@@ -81,7 +92,7 @@ namespace ProyectoTiendita.VISTA
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (daoProducto.eliminarProducto(int.Parse(txtID.Text.ToString())))
+            if (servicio.EliminarProducto(int.Parse(txtID.Text.ToString())))
             {
                 llenarTabla();
                 limpiar();
@@ -106,11 +117,15 @@ namespace ProyectoTiendita.VISTA
             estado = int.Parse(txtEstado.Text.ToString());
             precio = double.Parse(txtPrecio.Text.ToString());
 
-            producto = new Producto(nombre, precio, estado, foto);
+            ServiceReference1.Producto producto = new ServiceReference1.Producto();
+            producto.nombre = nombre;
+            producto.foto = foto;
+            producto.estado = estado;
+            producto.precio = precio;
 
             try
             {
-                daoProducto.agregar(producto);
+                servicio.AgregarProducto(producto);
                 limpiar();
                 llenarTabla();
             }

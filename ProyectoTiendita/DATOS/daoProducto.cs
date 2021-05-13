@@ -7,6 +7,7 @@ using System.Web;
 
 namespace ProyectoTiendita.DATOS
 {
+    [Serializable]
     public class daoProducto
     {
         String conexion = "server=remotemysql.com; database=OhfuHemABZ; user=OhfuHemABZ; pwd=Fo9zYFclIV";
