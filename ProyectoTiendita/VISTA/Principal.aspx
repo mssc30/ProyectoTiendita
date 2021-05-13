@@ -38,14 +38,17 @@
         <h1 class="display-4">Lista de Productos</h1>
 
         <div class="text-center">
-        <asp:ScriptManager ID="MainScriptManager" runat="server"/>
-            <asp:UpdatePanel ID="pnlTabla" runat="server">
-                <ContentTemplate>
-                    <asp:GridView align="center" class="table table-hover align-middle table-responsive"
-                        ID="dgvProductos" runat="server" OnRowCommand="dgvProductos_RowCommand" onRowDataBound="dgvProductos_RowDataBound" >
-                    </asp:GridView>
-                </ContentTemplate>
-            </asp:UpdatePanel>
+            <!--PARA IMPLEMENTAR AJAX SE HACE USO DE COMPONENTES QUE NOS BRINDA ASP, LO QUE ES SCRIPT MANAGER Y UPDATE PANEL
+                Y LA FUNCIONALIDAD DE ESTOS, ES QUE TODO LO QUE HAYA EN EL UPDATE PANEL SE CARGA ASINCRONICAMENTE, EN ESTE CASO
+                LA TABLA DE PRODUCTOS CON EL BOTON DE AÑADIR AL CARRITO.-->
+            <asp:ScriptManager ID="MainScriptManager" runat="server"/>
+                <asp:UpdatePanel ID="pnlTabla" runat="server">
+                    <ContentTemplate>
+                        <asp:GridView align="center" class="table table-hover align-middle table-responsive"
+                            ID="dgvProductos" runat="server" OnRowCommand="dgvProductos_RowCommand" onRowDataBound="dgvProductos_RowDataBound" >
+                        </asp:GridView>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
 
         </div>
         <br />
