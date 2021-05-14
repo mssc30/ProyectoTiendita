@@ -208,5 +208,9 @@ namespace ProyectoTiendita.VISTA
                 Response.Redirect("LoginAdmin.aspx", true);
             }
         }
+        protected void btnWebServer_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ConsumirServicioExterno.aspx", true);
+        }
     }
 }

@@ -15,14 +15,15 @@
 </head>
 <body>
     <form id="form1" runat="server">
-
-        <div class="text-center">
+       
+            <div class="text-center">
             <table class="table table-dark" width="100%">
               <thead>
                 <tr>
                   <th scope="col">&nbsp;<asp:Button class="btn btn-outline-light" ID="btnVerPedidos" runat="server" Text="Ver Pedidos" OnClick="btnVerPedidos_Click" /></th>
                   <th scope="col">&nbsp;<asp:Button class="btn btn-outline-light" ID="btnProductosCRUD" runat="server" Text="CRUD productos" OnClick="btnProductosCRUD_Click" /></th>
                   <th scope="col">&nbsp;<asp:Button class="btn btn-outline-light" ID="btnUsersCRUD" runat="server" Text="Inicio" OnClick="btnUsersCRUD_Click" /></th>
+                  <th scope="col">&nbsp;<asp:Button class="btn btn-outline-light" ID="btnWebServer" runat="server" Text="Indicadores Económicos" OnClick="btnWebServer_Click"/></th>
                   <th scope="col">&nbsp;<asp:Button class="btn btn-outline-light" ID="btnIniciarSesion" runat="server" OnClick="btnIniciarSesion_Click" Text="Cerrar Sesion" /></th>
                 </tr>
               </thead>
@@ -32,6 +33,10 @@
         <h1 class="display-4">Gestión de Usuarios</h1>
         <hr />
 
+        <asp:ScriptManager ID="MainScriptManager" runat="server"/>
+        <asp:UpdatePanel ID="pnlTabla" runat="server">
+        <ContentTemplate>
+    
         <div class="text-center">
             <strong>Nombre</strong><br />
             <asp:TextBox ID="txtNombre" runat="server" Width="199px"></asp:TextBox>
@@ -46,7 +51,7 @@
             <asp:TextBox ID="txtUsuario" runat="server" Width="195px"></asp:TextBox>
             <br />
             <strong>Contraseña</strong><br />
-            <asp:TextBox ID="txtContrasena" runat="server" Width="192px"></asp:TextBox>
+            <asp:TextBox ID="txtContrasena" runat="server" Width="192px" TextMode="Password"></asp:TextBox>
             <br />
             <br />
             <asp:Button class="btn btn-success" ID="btnAgregar" runat="server" OnClick="btnAgregar_Click" Text="Agregar" />
@@ -58,10 +63,6 @@
 
             </div>
             <div class="text-center">
-
-            <asp:ScriptManager ID="MainScriptManager" runat="server"/>
-            <asp:UpdatePanel ID="pnlTabla" runat="server">
-            <ContentTemplate>
 
             <asp:GridView align="center" class="table table-sm table-hover align-middle table-responsive" ID="dgvUsuarios" runat="server">
             </asp:GridView>
