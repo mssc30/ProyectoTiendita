@@ -43,13 +43,15 @@ namespace ProyectoTiendita.VISTA
             }
         }
 
-
+        // El evento Click del boton Consultar esta implementado para hacer uso de un servicio proporcionado por un banco para 
+        // obtener distintos indicadores economicos.
         protected void btnConsultar_Click1(object sender, EventArgs e)
         {
             String codigo = DropDownList1.SelectedValue;
             String fechaInicial = DateTime.Parse(txtFecha1.Text).ToString("dd/MM/yyyy");
             String fechaFinal = DateTime.Parse(txtFecha2.Text).ToString("dd/MM/yyyy");
-
+            // Para que funcione el servicio es necesario un registro previo ya que este pide un token para implementar el servicio
+            // en el proyecto ademas dependiendo de lo que se desee obtener requiere distinta informacion.
             ServiceReference2.wsindicadoreseconomicosSoapClient WB = new ServiceReference2.wsindicadoreseconomicosSoapClient();
             DataSet a = WB.ObtenerIndicadoresEconomicos(codigo, fechaInicial, fechaFinal, "Socorro", "N", "kokodiangelo@gmail.com", "MONS51OGIA");
             dgvDatosServer.DataSource = a;
