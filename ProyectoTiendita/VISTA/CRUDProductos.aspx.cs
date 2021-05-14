@@ -12,6 +12,10 @@ namespace ProyectoTiendita.VISTA
 
     public partial class CRUDProductos : System.Web.UI.Page
     {
+        protected void btnWebServer_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ConsumirServicioExterno.aspx", true);
+        }
         protected void btnProductosCRUD_Click(object sender, EventArgs e)
         {
             Response.Redirect("Principal.aspx", true);
@@ -43,13 +47,13 @@ namespace ProyectoTiendita.VISTA
             }
         }
 
-        daoProducto daoProducto = new daoProducto();
-        List<Producto> productos = new List<Producto>();
-        Producto producto;
+
         static Producto antiguo;
         String nombre, foto;
         int estado, idProd;
         double precio;
+        ServiceReference3.ServicioProductoSoapClient servicio = new ServiceReference3.ServicioProductoSoapClient();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty((String)(Session["isAdmin"])))
@@ -62,8 +66,16 @@ namespace ProyectoTiendita.VISTA
         {
             try
             {
-                productos = daoProducto.obtenerTodos();
-                dgvProductos.DataSource = productos;
+                dgvProductos.DataSource = null;
+                dgvProductos.DataBind();
+            }
+            catch (Exception)
+            {
+
+            }
+            try
+            {
+                dgvProductos.DataSource = servicio.ObtenerTodos();
                 dgvProductos.DataBind();
             }
             catch (Exception)
@@ -80,15 +92,20 @@ namespace ProyectoTiendita.VISTA
             precio = double.Parse(txtPrecio.Text.ToString());
             idProd = int.Parse(txtID.Text.ToString());
 
-            producto = new Producto(idProd, nombre, precio, estado, foto);
-
+            ServiceReference3.Producto producto = new ServiceReference3.Producto();
+            producto.idProducto = idProd;
+            producto.nombre = nombre;
+            producto.foto = foto;
+            producto.estado = estado;
+            producto.precio = precio;
             try
             {
-                daoProducto.modificarProducto(producto);
+                servicio.ModificarProducto(producto);
                 limpiar();
                 llenarTabla();
                 btnEliminar.Enabled = false;
                 btnModificar.Enabled = false;
+                txtID.Enabled = true;
             }
             catch (Exception)
             {
@@ -98,7 +115,17 @@ namespace ProyectoTiendita.VISTA
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            antiguo = daoProducto.obtenerUno(int.Parse(txtID.Text.ToString()));
+            antiguo = new Producto();
+            ServiceReference3.Producto prod = servicio.ObtenerUno(int.Parse(txtID.Text.ToString()));
+
+            if (prod!= null)
+            {
+                antiguo.idProducto = prod.idProducto;
+                antiguo.nombre = prod.nombre;
+                antiguo.precio = prod.precio;
+                antiguo.estado = prod.estado;
+                antiguo.foto = prod.foto;
+            }
 
             if (antiguo != null)
             {
@@ -111,16 +138,18 @@ namespace ProyectoTiendita.VISTA
                 btnEliminar.Enabled = true;
                 btnModificar.Enabled = true;
             }
+            
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (daoProducto.eliminarProducto(int.Parse(txtID.Text.ToString())))
+            if (servicio.EliminarProducto(int.Parse(txtID.Text.ToString())))
             {
                 llenarTabla();
                 limpiar();
                 btnEliminar.Enabled = false;
                 btnModificar.Enabled = false;
+                txtID.Enabled = true;
             }
         }
 
@@ -140,13 +169,17 @@ namespace ProyectoTiendita.VISTA
             estado = int.Parse(txtEstado.Text.ToString());
             precio = double.Parse(txtPrecio.Text.ToString());
 
-            producto = new Producto(nombre, precio, estado, foto);
-
+            ServiceReference3.Producto producto = new ServiceReference3.Producto();
+            producto.nombre = nombre;
+            producto.foto = foto;
+            producto.estado = estado;
+            producto.precio = precio;
             try
             {
-                daoProducto.agregar(producto);
+                servicio.AgregarProducto(producto);
                 limpiar();
                 llenarTabla();
+                txtID.Enabled = true;
             }
             catch (Exception)
             {

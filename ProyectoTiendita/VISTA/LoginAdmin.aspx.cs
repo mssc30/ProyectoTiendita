@@ -11,7 +11,10 @@ namespace ProyectoTiendita.VISTA
 {
     public partial class LoginAdmin : System.Web.UI.Page
     {
-
+        protected void btnWebServer_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ConsumirServicioExterno.aspx", true);
+        }
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
         {
             

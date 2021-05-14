@@ -15,7 +15,10 @@ namespace ProyectoTiendita.VISTA
 {
     public partial class Pedidos : System.Web.UI.Page
     {
-
+        protected void btnWebServer_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ConsumirServicioExterno.aspx", true);
+        }
         protected void btnProductosCRUD_Click(object sender, EventArgs e)
         {
             Response.Redirect("CRUDProductos.aspx", true);

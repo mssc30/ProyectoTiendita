@@ -12,8 +12,11 @@ namespace ProyectoTiendita.VISTA
 
     public partial class CRUDCliente : System.Web.UI.Page
     {
+        protected void btnWebServer_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ConsumirServicioExterno.aspx", true);
+        }
 
-        
         protected void btnPerfil_Click(object sender, EventArgs e)
         {
             Response.Redirect("Principal.aspx", true);

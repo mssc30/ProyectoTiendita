@@ -51,6 +51,15 @@ namespace ProyectoTiendita.VISTA
         protected global::System.Web.UI.WebControls.Button btnUsersCRUD;
 
         /// <summary>
+        /// Control btnWebServer.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnWebServer;
+
+        /// <summary>
         /// Control btnIniciarSesion.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,24 @@ namespace ProyectoTiendita.VISTA
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnIniciarSesion;
+
+        /// <summary>
+        /// Control MainScriptManager.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager MainScriptManager;
+
+        /// <summary>
+        /// Control pnlTabla.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel pnlTabla;
 
         /// <summary>
         /// Control txtNombre.
@@ -139,24 +166,6 @@ namespace ProyectoTiendita.VISTA
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBuscar;
-
-        /// <summary>
-        /// Control MainScriptManager.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager MainScriptManager;
-
-        /// <summary>
-        /// Control pnlTabla.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel pnlTabla;
 
         /// <summary>
         /// Control dgvProductos.

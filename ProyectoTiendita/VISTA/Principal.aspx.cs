@@ -236,6 +236,11 @@ namespace ProyectoTiendita.VISTA
             Response.Redirect("VerCarrito.aspx",true);
         }
 
+        protected void btnWebServer_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ConsumirServicioExterno.aspx", true);
+        }
+
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty((String)(Session["sesion"])))

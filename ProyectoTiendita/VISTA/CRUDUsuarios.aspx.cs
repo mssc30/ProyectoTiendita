@@ -11,6 +11,10 @@ namespace ProyectoTiendita.VISTA
 {
     public partial class CRUDUsuarios : System.Web.UI.Page
     {
+        protected void btnWebServer_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ConsumirServicioExterno.aspx", true);
+        }
         protected void btnProductosCRUD_Click(object sender, EventArgs e)
         {
             Response.Redirect("CRUDProductos.aspx", true);
@@ -92,12 +96,11 @@ namespace ProyectoTiendita.VISTA
                
             }
 
-            
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (daoUser.eliminarUsuario(txtContrasena.Text.ToString()))
+            if (daoUser.eliminarUsuario(txtUsuario.Text.ToString()))
             {
                 llenarTabla();
                 limpiarCampos();
@@ -111,6 +114,15 @@ namespace ProyectoTiendita.VISTA
         {
             try
             {
+                try
+                {
+                    dgvUsuarios.DataSource = null;
+                    dgvUsuarios.DataBind();
+                }
+                catch (Exception)
+                {
+
+                }
                 usuarios = daoUser.obtenerTodos();
                 dgvUsuarios.DataSource = usuarios;
                 dgvUsuarios.DataBind();
