@@ -167,32 +167,32 @@
                     <br />
             <h3>Mis datos</h3>
             <div class="form-floating mb-3" >
-            <asp:TextBox ID="txtNombre" class="form-control col-lg-4 "  placeholder="Nombre" runat="server" ></asp:TextBox>
+            <asp:TextBox ID="txtNombre" class="form-control col-lg-4 "  placeholder="Nombre" runat="server" MaxLength="30" ></asp:TextBox>
             <label for="txtUser">Nombre</label>
                 </div>
                 
             <div class="form-floating mb-3" >
-            <asp:TextBox ID="txtApellidos" class="form-control col-lg-4 " placeholder="Apellidos" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtApellidos" class="form-control col-lg-4 " placeholder="Apellidos" runat="server" MaxLength="60"></asp:TextBox>
             <label for="txtApellidos">Apellidos</label>
             </div>
 
              <div class="form-floating mb-3" >
-            <asp:TextBox ID="txtDireccion" class="form-control col-lg-4 " placeholder="Direccion" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtDireccion" class="form-control col-lg-4 " placeholder="Direccion" runat="server" MaxLength="60"></asp:TextBox>
             <label for="txtDireccion">Direccion</label>
             </div>
 
                  <div class="form-floating mb-3" >
-            <asp:TextBox ID="txtTelefono" class="form-control col-lg-4 " placeholder="Telefono" runat="server" TextMode="Phone"></asp:TextBox>
+            <asp:TextBox ID="txtTelefono" class="form-control col-lg-4 " placeholder="Telefono" runat="server" TextMode="Phone" MaxLength="20"></asp:TextBox>
             <label for="txtTelefono">Telefono</label>
             </div>
 
                      <div class="form-floating mb-3" >
-            <asp:TextBox ID="txtEmail" class="form-control col-lg-4 " placeholder="Email" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtEmail" class="form-control col-lg-4 " placeholder="Email" runat="server" Columns="60" MaxLength="60" TextMode="Email"></asp:TextBox>
             <label for="txtEmail">Email</label>
             </div>
 
             <div class="form-floating mb-3" >
-            <asp:TextBox ID="txtContrasena" class="form-control col-lg-4 " placeholder="Contrasena"  runat="server" TextMode="Password"></asp:TextBox>
+            <asp:TextBox ID="txtContrasena" class="form-control col-lg-4 " placeholder="Contrasena"  runat="server" MaxLength="35"></asp:TextBox>
             <label for="txtContrasena">Contrasena</label>
             </div>
 

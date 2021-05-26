@@ -8,6 +8,8 @@ namespace ProyectoTiendita.POJOS
     /// <summary>
     /// POJO QUE REPRESENTA UN CLIENTE, CON SUS ATRIBUTOS Y CONSTRUCTOR
     /// </summary>
+    /// 
+    [Serializable]
     public class Cliente
     {
         public String nombre { get; set; }
@@ -26,5 +28,7 @@ namespace ProyectoTiendita.POJOS
             this.email = email;
             this.contrasena = contrasena;
         }
+
+        public Cliente() { }
     }
 }

@@ -40,14 +40,18 @@ namespace ProyectoTiendita.VISTA
 
 
         String usuario, contrasenia, nombre, apellidos, telefono;
-        Usuario user;
-        static Usuario antiguo;
-        daoUsuario daoUser = new daoUsuario();
-        List<Usuario> usuarios;
+        //Usuario user;
+        ServiceReference5.Usuario user;
+        //static Usuario antiguo;
+        static ServiceReference5.Usuario antiguo;
+        //daoUsuario daoUser = new daoUsuario();
+        //List<Usuario> usuarios;
+        ServiceReference5.ServicioUsuarioSoapClient servicio = new ServiceReference5.ServicioUsuarioSoapClient();
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            antiguo = daoUser.obtenerUno(txtUsuario.Text.ToString());
+            //antiguo = daoUser.obtenerUno(txtUsuario.Text.ToString());
+            antiguo = servicio.ObtenerUno(txtUsuario.Text.ToString());
 
             if (antiguo != null){
                 txtUsuario.Text = antiguo.usuario;
@@ -80,10 +84,17 @@ namespace ProyectoTiendita.VISTA
             apellidos = txtApellidos.Text.ToString();
             telefono = txtTelefono.Text.ToString();
 
-            user = new Usuario(usuario, contrasenia, nombre, apellidos, telefono);
+            //user = new Usuario(usuario, contrasenia, nombre, apellidos, telefono);
+            user = new ServiceReference5.Usuario();
+            user.usuario = usuario;
+            user.contrasena = contrasenia;
+            user.nombre = nombre;
+            user.apellidos = apellidos;
+            user.telefono = telefono;
 
             try{
-                daoUser.modificarUsuario(user);
+                //daoUser.modificarUsuario(user);
+                servicio.ModificarUsuario(user);
             
                 llenarTabla();
                 limpiarCampos();
@@ -100,7 +111,8 @@ namespace ProyectoTiendita.VISTA
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (daoUser.eliminarUsuario(txtUsuario.Text.ToString()))
+            //daoUser.eliminarUsuario(txtUsuario.Text.ToString())
+            if (servicio.EliminarUsuario(txtUsuario.Text.ToString()))
             {
                 llenarTabla();
                 limpiarCampos();
@@ -123,8 +135,8 @@ namespace ProyectoTiendita.VISTA
                 {
 
                 }
-                usuarios = daoUser.obtenerTodos();
-                dgvUsuarios.DataSource = usuarios;
+                //usuarios = daoUser.obtenerTodos();
+                dgvUsuarios.DataSource = servicio.ObtenerTodos();
                 dgvUsuarios.DataBind();
             }
             catch (Exception)
@@ -158,10 +170,18 @@ namespace ProyectoTiendita.VISTA
             apellidos = txtApellidos.Text.ToString();
             telefono = txtTelefono.Text.ToString();
 
-            user = new Usuario(usuario, contrasenia, nombre, apellidos, telefono);
+            //user = new Usuario(usuario, contrasenia, nombre, apellidos, telefono);
+            user = new ServiceReference5.Usuario();
+            user.usuario = usuario;
+            user.contrasena = contrasenia;
+            user.nombre = nombre;
+            user.apellidos = apellidos;
+            user.telefono = telefono;
 
-            try{
-                daoUser.agregar(user);
+            try
+            {
+                //daoUser.agregar(user);
+                servicio.AgregarUsuario(user);
             
                 llenarTabla();
                 limpiarCampos();

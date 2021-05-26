@@ -179,7 +179,7 @@
                 <label for="txtUser">Usuario</label>
             </div>
             <div class="form-floating">
-                 <asp:TextBox ID="txtContra" class="form-control col-lg-4 "  placeholder="Contraseña" runat="server"></asp:TextBox>
+                 <asp:TextBox ID="txtContra"  class="form-control col-lg-4 "  placeholder="Contraseña" runat="server" TextMode="Password"></asp:TextBox>
                  <label for="txtContra">Contraseña</label>
             </div>
 

@@ -8,6 +8,8 @@ namespace ProyectoTiendita.POJOS
     /// <summary>
     /// POJO QUE REPRESENTA UN USUARIO CON SUS ATRIBUTOS Y CONSTRUCTOR
     /// </summary>
+    /// 
+    [Serializable]
     public class Usuario
     {
         public String usuario { get; set; }
@@ -24,5 +26,7 @@ namespace ProyectoTiendita.POJOS
             this.apellidos = apellidos;
             this.telefono = telefono;
         }
+
+        public Usuario() { }
     }
 }

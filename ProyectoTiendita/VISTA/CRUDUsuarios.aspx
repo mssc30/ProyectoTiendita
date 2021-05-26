@@ -39,19 +39,19 @@
     
         <div class="text-center">
             <strong>Nombre</strong><br />
-            <asp:TextBox ID="txtNombre" runat="server" Width="199px"></asp:TextBox>
+            <asp:TextBox ID="txtNombre" runat="server" Width="199px" MaxLength="30"></asp:TextBox>
             <br />
             <strong>Apellidos</strong><br />
-            <asp:TextBox ID="txtApellidos" runat="server" Width="198px"></asp:TextBox>
+            <asp:TextBox ID="txtApellidos" runat="server" Width="198px" MaxLength="60"></asp:TextBox>
             <br />
             <strong>Telefono</strong><br />
-            <asp:TextBox ID="txtTelefono" runat="server" Width="197px"></asp:TextBox>
+            <asp:TextBox ID="txtTelefono" runat="server" Width="197px" MaxLength="20" TextMode="Phone"></asp:TextBox>
             <br />
             <strong>Usuario</strong><br />
-            <asp:TextBox ID="txtUsuario" runat="server" Width="195px"></asp:TextBox>
+            <asp:TextBox ID="txtUsuario" runat="server" Width="195px" MaxLength="20"></asp:TextBox>
             <br />
             <strong>Contraseña</strong><br />
-            <asp:TextBox ID="txtContrasena" runat="server" Width="192px" TextMode="Password"></asp:TextBox>
+            <asp:TextBox ID="txtContrasena" runat="server" Width="192px" MaxLength="35"></asp:TextBox>
             <br />
             <br />
             <asp:Button class="btn btn-success" ID="btnAgregar" runat="server" OnClick="btnAgregar_Click" Text="Agregar" />
