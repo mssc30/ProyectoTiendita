@@ -42,9 +42,11 @@ namespace ProyectoTiendita.VISTA
             }
         }
 
-        daoCliente daoCliente = new daoCliente();
-        Cliente cliente;
-        static Cliente viejosDatos;
+        //daoCliente daoCliente = new daoCliente();
+        ServiceReference4.ServicioClienteSoapClient servicio = new ServiceReference4.ServicioClienteSoapClient();
+        //Cliente cliente;
+        //static Cliente viejosDatos;
+        static ServiceReference4.Cliente viejosDatos;
         String nombre, apellidos, direccion, telefono, email, contrasena;
 
         //CUANDO HAYA SESION INICIADA
@@ -54,7 +56,8 @@ namespace ProyectoTiendita.VISTA
         {
             try
             {
-                daoCliente.eliminarCliente(userActual);
+                //daoCliente.eliminarCliente(userActual);
+                servicio.EliminarCliente(userActual);
                 //CERRAR SESION, MANDAR A PAGINA DE INICIO
                 Session["usuario"] = null;
                 Session["isAdmin"] = null;
@@ -104,7 +107,8 @@ namespace ProyectoTiendita.VISTA
 
         public void cargarDatos()
         {
-            viejosDatos = daoCliente.obtenerUno(userActual);
+            //viejosDatos = daoCliente.obtenerUno(userActual);
+            viejosDatos = servicio.ObtenerUno(userActual);
 
             if(viejosDatos != null){
                 txtApellidos.Text = viejosDatos.apellidos;
@@ -133,9 +137,16 @@ namespace ProyectoTiendita.VISTA
                 contrasena = viejosDatos.contrasena;
             }
 
-            cliente = new Cliente(nombre, apellidos, direccion, telefono, email, contrasena);
+            ServiceReference4.Cliente cliente = new ServiceReference4.Cliente();
+            cliente.nombre = nombre;
+            cliente.apellidos = apellidos;
+            cliente.direccion = direccion;
+            cliente.telefono = telefono;
+            cliente.email = email;
+            cliente.contrasena = contrasena;
 
-                daoCliente.modificarCliente(cliente);
+            //daoCliente.modificarCliente(cliente);
+            servicio.ModificarCliente(cliente);
                 //cargarDatos();
         }
 
@@ -148,11 +159,19 @@ namespace ProyectoTiendita.VISTA
             email = txtEmail.Text.ToString();
             contrasena = Encriptar.MD5(txtContrasena.Text.ToString());
 
-            cliente = new Cliente(nombre, apellidos, direccion, telefono, email, contrasena);
+            //cliente = new Cliente(nombre, apellidos, direccion, telefono, email, contrasena);
+            ServiceReference4.Cliente cliente = new ServiceReference4.Cliente();
+            cliente.nombre = nombre;
+            cliente.apellidos = apellidos;
+            cliente.direccion = direccion;
+            cliente.telefono = telefono;
+            cliente.email = email;
+            cliente.contrasena = contrasena;
 
             try
             {
-                daoCliente.agregar(cliente);
+                //daoCliente.agregar(cliente);
+                servicio.AgregarCliente(cliente);
                 Response.Redirect("LoginAdmin.aspx", true);
             }
             catch(Exception )

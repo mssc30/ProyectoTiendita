@@ -9,47 +9,48 @@ using ProyectoTiendita.POJOS;
 namespace ProyectoTiendita
 {
     /// <summary>
-    /// Descripción breve de ServicioProducto
+    /// Descripción breve de ServicioCliente
     /// </summary>
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
     // [System.Web.Script.Services.ScriptService]
-    public class ServicioProducto : System.Web.Services.WebService
+    public class ServicioCliente : System.Web.Services.WebService
     {
+
         [WebMethod]
-        public List<Producto> ObtenerTodos()
+        public List<Cliente> ObtenerTodos()
         {
-            return new daoProducto().obtenerTodos();
+            return new daoCliente().obtenerTodos();
         }
 
         [WebMethod]
-        public Producto ObtenerUno(int idProd)
+        public Cliente ObtenerUno(String idCliente)
         {
-            daoProducto dao = new daoProducto();
-            return dao.obtenerUno(idProd);
+            daoCliente dao = new daoCliente();
+            return dao.obtenerUno(idCliente);
         }
 
         [WebMethod]
-        public bool AgregarProducto(Producto prod)
+        public bool AgregarCliente(Cliente prod)
         {
-            daoProducto dao = new daoProducto();
+            daoCliente dao = new daoCliente();
             return dao.agregar(prod);
         }
 
         [WebMethod]
-        public bool ModificarProducto(Producto prod)
+        public bool ModificarCliente(Cliente prod)
         {
-            daoProducto dao = new daoProducto();
-            return dao.modificarProducto(prod);
+            daoCliente dao = new daoCliente();
+            return dao.modificarCliente(prod);
         }
 
         [WebMethod]
-        public bool EliminarProducto(int idProd)
+        public bool EliminarCliente(String idCliente)
         {
-            daoProducto dao = new daoProducto();
-            return dao.eliminarProducto(idProd);
+            daoCliente dao = new daoCliente();
+            return dao.eliminarCliente(idCliente);
         }
     }
 }

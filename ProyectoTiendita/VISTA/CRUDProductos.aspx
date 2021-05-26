@@ -37,16 +37,16 @@
 
         <div class="text-center">
             <strong> Nombre</strong><br />
-            <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtNombre" runat="server" MaxLength="39"></asp:TextBox>
             <br />
             <strong>Precio</strong><br />
-            <asp:TextBox ID="txtPrecio" runat="server" TextMode="Number"></asp:TextBox>
+            <asp:TextBox ID="txtPrecio" runat="server" TextMode="Number" MaxLength="12"></asp:TextBox>
             <br />
             <strong>Estado</strong><br />
-            <asp:TextBox ID="txtEstado" runat="server" TextMode="Number"></asp:TextBox>
+            <asp:TextBox ID="txtEstado" runat="server" TextMode="Number" MaxLength="1"></asp:TextBox>
             <br />
             <strong>Imagen</strong><br />
-            <asp:TextBox ID="txtFoto" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtFoto" runat="server" MaxLength="500" TextMode="Url"></asp:TextBox>
             <br />
             <br />
             <asp:Button class="btn btn-success" ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
@@ -55,7 +55,7 @@
 &nbsp;<br />            
             <br />
             <strong>ID:</strong>
-            <asp:TextBox ID="txtID" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtID" runat="server" TextMode="Number"></asp:TextBox>
 &nbsp;<asp:Button class="btn btn-primary" ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
             </div>
             <br />
