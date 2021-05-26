@@ -52,6 +52,8 @@ namespace ProyectoTiendita.VISTA
         String nombre, foto;
         int estado, idProd;
         double precio;
+
+        // Objeto usado para el manejo del servicio
         ServiceReference3.ServicioProductoSoapClient servicio = new ServiceReference3.ServicioProductoSoapClient();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -100,7 +102,9 @@ namespace ProyectoTiendita.VISTA
             producto.precio = precio;
             try
             {
+                //LLamada al metodo modificar un producto que se encuentra en el servicio
                 servicio.ModificarProducto(producto);
+
                 limpiar();
                 llenarTabla();
                 btnEliminar.Enabled = false;
@@ -116,6 +120,8 @@ namespace ProyectoTiendita.VISTA
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             antiguo = new Producto();
+
+            //LLamada al metodo obtener uno que se encuentra en el servicio
             ServiceReference3.Producto prod = servicio.ObtenerUno(int.Parse(txtID.Text.ToString()));
 
             if (prod!= null)
@@ -143,6 +149,7 @@ namespace ProyectoTiendita.VISTA
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
+            //LLamada al metodo dentro del servicio que elimina un producto 
             if (servicio.EliminarProducto(int.Parse(txtID.Text.ToString())))
             {
                 llenarTabla();
@@ -176,6 +183,7 @@ namespace ProyectoTiendita.VISTA
             producto.precio = precio;
             try
             {
+                //LLamada al metodo agregar producto que se encuentra en el servicio
                 servicio.AgregarProducto(producto);
                 limpiar();
                 llenarTabla();
