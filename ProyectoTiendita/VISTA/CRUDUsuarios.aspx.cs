@@ -41,12 +41,12 @@ namespace ProyectoTiendita.VISTA
 
         String usuario, contrasenia, nombre, apellidos, telefono;
         //Usuario user;
-        ServiceReference5.Usuario user;
+        ServicioUsuarios.Usuario user;
         //static Usuario antiguo;
-        static ServiceReference5.Usuario antiguo;
+        static ServicioUsuarios.Usuario antiguo;
         //daoUsuario daoUser = new daoUsuario();
         //List<Usuario> usuarios;
-        ServiceReference5.ServicioUsuarioSoapClient servicio = new ServiceReference5.ServicioUsuarioSoapClient();
+        ServicioUsuarios.ServicioUsuarioSoapClient servicio = new ServicioUsuarios.ServicioUsuarioSoapClient();
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -85,7 +85,7 @@ namespace ProyectoTiendita.VISTA
             telefono = txtTelefono.Text.ToString();
 
             //user = new Usuario(usuario, contrasenia, nombre, apellidos, telefono);
-            user = new ServiceReference5.Usuario();
+            user = new ServicioUsuarios.Usuario();
             user.usuario = usuario;
             user.contrasena = contrasenia;
             user.nombre = nombre;
@@ -171,7 +171,7 @@ namespace ProyectoTiendita.VISTA
             telefono = txtTelefono.Text.ToString();
 
             //user = new Usuario(usuario, contrasenia, nombre, apellidos, telefono);
-            user = new ServiceReference5.Usuario();
+            user = new ServicioUsuarios.Usuario();
             user.usuario = usuario;
             user.contrasena = contrasenia;
             user.nombre = nombre;

@@ -157,6 +157,81 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Connected Services\ServicioClientes\ProyectoTiendita.ServicioClientes.AgregarClienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioClientes\ProyectoTiendita.ServicioClientes.Cliente.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioClientes\ProyectoTiendita.ServicioClientes.EliminarClienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioClientes\ProyectoTiendita.ServicioClientes.ModificarClienteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioClientes\ProyectoTiendita.ServicioClientes.ObtenerTodosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioClientes\ProyectoTiendita.ServicioClientes.ObtenerUnoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ServicioClientes\ServicioCliente.disco" />
+    <None Include="Connected Services\ServicioClientes\configuration91.svcinfo" />
+    <None Include="Connected Services\ServicioClientes\configuration.svcinfo" />
+    <None Include="Connected Services\ServicioClientes\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\ServicioProductos\ProyectoTiendita.ServicioProductos.AgregarProductoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioProductos\ProyectoTiendita.ServicioProductos.HelloWorldResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioProductos\ProyectoTiendita.ServicioProductos.ModificarProductoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioProductos\ProyectoTiendita.ServicioProductos.ObtenerTodosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioProductos\ProyectoTiendita.ServicioProductos.ObtenerUnoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioProductos\ProyectoTiendita.ServicioProductos.Producto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ServicioProductos\ServicioProducto.disco" />
+    <None Include="Connected Services\ServicioProductos\configuration91.svcinfo" />
+    <None Include="Connected Services\ServicioProductos\configuration.svcinfo" />
+    <None Include="Connected Services\ServicioProductos\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\ServicioUsuarios\ProyectoTiendita.ServicioUsuarios.AgregarUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioUsuarios\ProyectoTiendita.ServicioUsuarios.EliminarUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioUsuarios\ProyectoTiendita.ServicioUsuarios.ModificarUsuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioUsuarios\ProyectoTiendita.ServicioUsuarios.ObtenerTodosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioUsuarios\ProyectoTiendita.ServicioUsuarios.ObtenerUnoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ServicioUsuarios\ProyectoTiendita.ServicioUsuarios.Usuario.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ServicioUsuarios\ServicioUsuario.disco" />
+    <None Include="Connected Services\ServicioUsuarios\configuration91.svcinfo" />
+    <None Include="Connected Services\ServicioUsuarios\configuration.svcinfo" />
+    <None Include="Connected Services\ServicioUsuarios\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="ServicioCliente.asmx" />
     <Content Include="ServicioProducto.asmx" />
     <Content Include="ServicioUsuario.asmx" />
@@ -187,6 +262,21 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\ServiceReference5\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServicioClientes\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServicioProductos\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServicioUsuarios\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -277,8 +367,12 @@
     <None Include="Connected Services\ServiceReference3\ServicioProducto.wsdl" />
     <None Include="Connected Services\ServiceReference4\ServicioCliente.wsdl" />
     <None Include="Connected Services\ServiceReference5\ServicioUsuario.wsdl" />
+    <None Include="Connected Services\ServicioClientes\ServicioCliente.wsdl" />
+    <None Include="Connected Services\ServicioProductos\ServicioProducto.wsdl" />
+    <None Include="Connected Services\ServicioUsuarios\ServicioUsuario.wsdl" />
     <None Include="packages.config" />
     <Content Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -294,6 +388,9 @@
     <WCFMetadataStorage Include="Connected Services\ServiceReference3\" />
     <WCFMetadataStorage Include="Connected Services\ServiceReference4\" />
     <WCFMetadataStorage Include="Connected Services\ServiceReference5\" />
+    <WCFMetadataStorage Include="Connected Services\ServicioClientes\" />
+    <WCFMetadataStorage Include="Connected Services\ServicioProductos\" />
+    <WCFMetadataStorage Include="Connected Services\ServicioUsuarios\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

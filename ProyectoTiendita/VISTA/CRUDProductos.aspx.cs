@@ -54,7 +54,7 @@ namespace ProyectoTiendita.VISTA
         double precio;
 
         // Objeto usado para el manejo del servicio
-        ServiceReference3.ServicioProductoSoapClient servicio = new ServiceReference3.ServicioProductoSoapClient();
+        ServicioProductos.ServicioProductoSoapClient servicio = new ServicioProductos.ServicioProductoSoapClient();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -94,7 +94,7 @@ namespace ProyectoTiendita.VISTA
             precio = double.Parse(txtPrecio.Text.ToString());
             idProd = int.Parse(txtID.Text.ToString());
 
-            ServiceReference3.Producto producto = new ServiceReference3.Producto();
+            ServicioProductos.Producto producto = new ServicioProductos.Producto();
             producto.idProducto = idProd;
             producto.nombre = nombre;
             producto.foto = foto;
@@ -122,7 +122,7 @@ namespace ProyectoTiendita.VISTA
             antiguo = new Producto();
 
             //LLamada al metodo obtener uno que se encuentra en el servicio
-            ServiceReference3.Producto prod = servicio.ObtenerUno(int.Parse(txtID.Text.ToString()));
+            ServicioProductos.Producto prod = servicio.ObtenerUno(int.Parse(txtID.Text.ToString()));
 
             if (prod!= null)
             {
@@ -176,7 +176,7 @@ namespace ProyectoTiendita.VISTA
             estado = int.Parse(txtEstado.Text.ToString());
             precio = double.Parse(txtPrecio.Text.ToString());
 
-            ServiceReference3.Producto producto = new ServiceReference3.Producto();
+            ServicioProductos.Producto producto = new ServicioProductos.Producto();
             producto.nombre = nombre;
             producto.foto = foto;
             producto.estado = estado;
