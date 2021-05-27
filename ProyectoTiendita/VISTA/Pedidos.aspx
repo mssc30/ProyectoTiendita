@@ -35,19 +35,25 @@
 
         <div class="text-center">
 
-            <asp:ScriptManager ID="MainScriptManager" runat="server"/>
-            <asp:UpdatePanel ID="pnlTabla" runat="server">
-            <ContentTemplate>
-
             <asp:GridView align="center" class="table table-sm table-hover align-middle table-responsive" 
                 ID="dgvPedidos" runat="server" OnRowCommand="dgvPedidos_RowCommand">
                 <Columns>
                     <asp:BoundField HtmlEncode="False"/>
                 </Columns>
             </asp:GridView>
+            <br />
+        </div>
 
-            </ContentTemplate>
-            </asp:UpdatePanel>
+        <h1 class="display-4">Pedidos Entregados</h1>
+
+        <div class="text-center">
+
+            <asp:GridView align="center" class="table table-sm table-hover align-middle table-responsive" 
+                ID="dgvEntregados" runat="server">
+                <Columns>
+                    <asp:BoundField HtmlEncode="False"/>
+                </Columns>
+            </asp:GridView>
 
             <br />
         </div>

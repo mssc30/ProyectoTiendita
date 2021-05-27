@@ -191,8 +191,8 @@ namespace ProyectoTiendita.DATOS
                 cn.ConnectionString = conexion;
                 cn.Open();
                 ///EJECUTAR COMANDO
-                string strSQL = "INSERT INTO PEDIDOS_PENDIENTES (ID, ID_CLIENTE, DIRECCION, PEDIDO, TOTAL)" +
-                    "VALUES (@ID, @ID_CLIENTE, @DIRECCION, @PEDIDO, @TOTAL)";
+                string strSQL = "INSERT INTO PEDIDOS_PENDIENTES (ID, ID_CLIENTE, DIRECCION, PEDIDO, TOTAL, ESTADO)" +
+                    "VALUES (@ID, @ID_CLIENTE, @DIRECCION, @PEDIDO, @TOTAL, @ESTADO)";
 
                 String pedido = "";
                 double total = 0.0;
@@ -209,6 +209,7 @@ namespace ProyectoTiendita.DATOS
                 comando.Parameters.AddWithValue("DIRECCION", new daoCliente().obtenerUno(elcarrito[0].idCliente).direccion);
                 comando.Parameters.AddWithValue("PEDIDO", pedido);
                 comando.Parameters.AddWithValue("TOTAL", total);
+                comando.Parameters.AddWithValue("ESTADO", "PENDIENTE");
                 comando.ExecuteNonQuery();
                 comando.Dispose();
                 return true;
@@ -224,7 +225,7 @@ namespace ProyectoTiendita.DATOS
                 cn.Dispose();
             }
         }
-        public List<pedidoAdmin> obtenerTodosAdmin()
+        public List<pedidoAdmin> obtenerTodosAdmin(String estado)
         {
             ///CREAR CONEXION, MODIFICARLA, USARLA
             List<pedidoAdmin> pendientes = new List<pedidoAdmin>();
@@ -235,8 +236,9 @@ namespace ProyectoTiendita.DATOS
                 cn.ConnectionString = conexion;
                 cn.Open();
                 ///EJECUTAR COMANDO
-                string strSQL = "SELECT * FROM PEDIDOS_PENDIENTES";
+                string strSQL = "SELECT * FROM PEDIDOS_PENDIENTES WHERE ESTADO=@ESTADO";
                 MySqlCommand comando = new MySqlCommand(strSQL, cn);
+                comando.Parameters.AddWithValue("ESTADO",estado);
                 MySqlDataReader dr = comando.ExecuteReader();
 
                 while (dr.Read())
@@ -244,10 +246,11 @@ namespace ProyectoTiendita.DATOS
 
                     pedidoAdmin ped = new pedidoAdmin();
                     ped.ID = dr.GetString("ID");
-                    ped.idCliente = dr.GetString("ID_CLIENTE");
-                    ped.direccion = dr.GetString("DIRECCION");
-                    ped.pedido = dr.GetString("PEDIDO");
-                    ped.total = dr.GetDouble("TOTAL");
+                    ped.ID_CLIENTE = dr.GetString("ID_CLIENTE");
+                    ped.DIRECCION = dr.GetString("DIRECCION");
+                    ped.PEDIDO = dr.GetString("PEDIDO");
+                    ped.TOTAL = dr.GetDouble("TOTAL");
+                    ped.ESTADO = dr.GetString("ESTADO");
                     pendientes.Add(ped);
                 }
 
@@ -264,7 +267,35 @@ namespace ProyectoTiendita.DATOS
                 cn.Close();
                 cn.Dispose();
             }
+        }
+        public Boolean eliminarPendiente(String ID)
+        {
 
+            ///CREAR, MODIFICAR LA CONEXION 
+            MySqlConnection cn = new MySqlConnection();
+            try
+            {
+                cn.ConnectionString = conexion;
+                cn.Open();
+                ///EJECUTAR COMANDO
+                string strSQL = "UPDATE PEDIDOS_PENDIENTES SET ESTADO=@ESTADO WHERE ID = @ID";
+                MySqlCommand comando = new MySqlCommand(strSQL, cn);
+                comando.Parameters.AddWithValue("@ID", ID);
+                comando.Parameters.AddWithValue("ESTADO", "ENTREGADO");
+                comando.ExecuteNonQuery();
+                comando.Dispose();
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                ///CERRAR TODO
+                cn.Close();
+                cn.Dispose();
+            }
         }
     }
 }
