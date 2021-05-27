@@ -23,8 +23,9 @@ namespace ProyectoTiendita.VISTA
         String userActual, isAdmin;
         daoProducto daoProducto;
         daoUsuario daoUsuario;
+        daoCarrito daoCarrito;
         List<Producto> listaProd;
-        String ruta;
+        
         protected void btnProductosCRUD_Click(object sender, EventArgs e)
         {
             Response.Redirect("CRUDProductos.aspx", true);
@@ -47,9 +48,8 @@ namespace ProyectoTiendita.VISTA
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //RUTA DONDE SE ALMACENARA EL ARCHIVO XML
-            //ruta=@"C:\Users\Jesus Ramirez Ayala\Desktop\Carrito" + ((String)(Session["usuario"])) + ".xml";
-            ruta = @"d:\Carrito" + ((String)(Session["usuario"])) + ".xml";
+            //
+            daoCarrito = new daoCarrito();
             listaProd = new List<Producto>();
             daoProducto = new daoProducto();
             daoUsuario = new daoUsuario();
@@ -159,55 +159,9 @@ namespace ProyectoTiendita.VISTA
         {
             //SE OBTIENE INFORMACION DEL PRODUCTO QUE SE AGREGO AL CARRITO
             int IdProd = listaProd[Int32.Parse(e.CommandArgument + "")].idProducto;
-            String nombreProd= listaProd[Int32.Parse(e.CommandArgument + "")].nombre;
             double precio = listaProd[Int32.Parse(e.CommandArgument + "")].precio;
-            //IMPLEMENTACION DE XML PARA EL MANEJO DE LOS PRODUCTOS QUE ACTUALMENTE SE ENCUENTRAN EN EL CARRITO
-            if (!File.Exists(ruta))
-            {
-            //CUANDO ES CREADO POR PRIMERA VES SE CREA EL DOCUMENTO CON SU NODO RAIZ
-                XDocument document = new XDocument(new XDeclaration("1.0", "utf-8", null));
-                XElement nodoRaiz = new XElement("productos");
-                document.Add(nodoRaiz);
-                XElement nodo = new XElement("producto");
-                nodo.Add(new XElement("IdProducto", IdProd));
-                nodo.Add(new XElement("Nombre", nombreProd));
-                nodo.Add(new XElement("Cantidad", 1));
-                nodo.Add(new XElement("Subtotal", precio));
-                nodoRaiz.Add(nodo);
-                document.Save(ruta);
-            }
-            else
-            {
-            //SI YA ESTA CREADO EL DOCUMENTO SE APLICAN VALIDACIONES PARA NO REPETIR PRODUCTOS Y SOLO MODIFICAR LA CANTIDAD
-                XmlDocument doc = new XmlDocument();
-                doc.Load(ruta);
-
-                XmlNode node;
-                node = doc.DocumentElement;
-                bool existe = false;
-                foreach (XmlNode node1 in node.ChildNodes)
-                {
-                    if (node1.ChildNodes[0].InnerText.Equals(IdProd+""))
-                    {
-                        existe = true;
-                        node1.ChildNodes[2].InnerText = (Int32.Parse(node1.ChildNodes[2].InnerText)+1)+"";
-                        node1.ChildNodes[3].InnerText = (Double.Parse(node1.ChildNodes[2].InnerText)*precio) + "";
-                        doc.Save(ruta);
-                        break;
-                    }
-                }
-                if (!existe)
-                {
-                    XDocument document = XDocument.Load(ruta);
-                    XElement nodo = new XElement("producto");
-                    nodo.Add(new XElement("IdProducto", IdProd));
-                    nodo.Add(new XElement("Nombre", nombreProd));
-                    nodo.Add(new XElement("Cantidad", 1));
-                    nodo.Add(new XElement("Subtotal", precio));
-                    document.Root.Add(nodo);
-                    document.Save(ruta);
-                }
-            }
+            daoCarrito.agregar(IdProd, precio, (String)(Session["usuario"]));
+            
         }
 
         protected void dgvProductos_RowDataBound(object sender, GridViewRowEventArgs e)

@@ -24,7 +24,7 @@
                   <th scope="col">&nbsp;<asp:Button class="btn btn-outline-light" ID="btnVerPedidos" runat="server" Text="Inicio" OnClick="btnVerPedidos_Click" /></th>
                   <th scope="col">&nbsp;<asp:Button class="btn btn-outline-light" ID="btnProductosCRUD" runat="server" Text="CRUD productos" OnClick="btnProductosCRUD_Click" /></th>
                   <th scope="col">&nbsp;<asp:Button class="btn btn-outline-light" ID="btnUsersCRUD" runat="server" Text="CRUD usuarios" OnClick="btnUsersCRUD_Click" /></th>
-                  <th scope="col">&nbsp;<asp:Button class="btn btn-outline-light" ID="btnWebServer" runat="server" Text="Indicadores Económicos" OnClick="btnWebServer_Click"/></th>
+                  <!-- <th scope="col">&nbsp;<asp:Button class="btn btn-outline-light" ID="btnWebServer" runat="server" Text="Indicadores Económicos" OnClick="btnWebServer_Click"/></th> -->
                   <th scope="col">&nbsp;<asp:Button class="btn btn-outline-light" ID="btnIniciarSesion" runat="server" OnClick="btnIniciarSesion_Click" Text="Cerrar Sesion" /></th>
                 </tr>
               </thead>
@@ -35,19 +35,25 @@
 
         <div class="text-center">
 
-            <asp:ScriptManager ID="MainScriptManager" runat="server"/>
-            <asp:UpdatePanel ID="pnlTabla" runat="server">
-            <ContentTemplate>
-
             <asp:GridView align="center" class="table table-sm table-hover align-middle table-responsive" 
                 ID="dgvPedidos" runat="server" OnRowCommand="dgvPedidos_RowCommand">
                 <Columns>
                     <asp:BoundField HtmlEncode="False"/>
                 </Columns>
             </asp:GridView>
+            <br />
+        </div>
 
-            </ContentTemplate>
-            </asp:UpdatePanel>
+        <h1 class="display-4">Pedidos Entregados</h1>
+
+        <div class="text-center">
+
+            <asp:GridView align="center" class="table table-sm table-hover align-middle table-responsive" 
+                ID="dgvEntregados" runat="server">
+                <Columns>
+                    <asp:BoundField HtmlEncode="False"/>
+                </Columns>
+            </asp:GridView>
 
             <br />
         </div>

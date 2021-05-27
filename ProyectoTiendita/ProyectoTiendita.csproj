@@ -182,6 +182,13 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\ServicioExterno\wsindicadoreseconomicos.disco" />
+    <None Include="Connected Services\ServicioExterno\configuration91.svcinfo" />
+    <None Include="Connected Services\ServicioExterno\configuration.svcinfo" />
+    <None Include="Connected Services\ServicioExterno\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Connected Services\ServicioProductos\ProyectoTiendita.ServicioProductos.AgregarProductoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -200,6 +207,7 @@
     <Content Include="Connected Services\ServicioProductos\ProyectoTiendita.ServicioProductos.Producto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <None Include="Connected Services\ServicioExterno\wsindicadoreseconomicos.wsdl" />
     <None Include="Connected Services\ServicioProductos\ServicioProducto.disco" />
     <None Include="Connected Services\ServicioProductos\configuration91.svcinfo" />
     <None Include="Connected Services\ServicioProductos\configuration.svcinfo" />
@@ -271,6 +279,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\ServicioExterno\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\ServicioProductos\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -281,14 +294,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="DATOS\daoCarrito.cs" />
     <Compile Include="DATOS\daoCliente.cs" />
     <Compile Include="DATOS\daoPedido.cs" />
     <Compile Include="DATOS\daoProducto.cs" />
     <Compile Include="DATOS\daoUsuario.cs" />
+    <Compile Include="POJOS\Carrito.cs" />
     <Compile Include="POJOS\Cliente.cs" />
     <Compile Include="POJOS\DetallePedido.cs" />
     <Compile Include="POJOS\Encriptar.cs" />
     <Compile Include="POJOS\Pedido.cs" />
+    <Compile Include="POJOS\pedidoAdmin.cs" />
     <Compile Include="POJOS\PedidoAux.cs" />
     <Compile Include="POJOS\Producto.cs" />
     <Compile Include="POJOS\Usuario.cs" />
@@ -389,6 +405,7 @@
     <WCFMetadataStorage Include="Connected Services\ServiceReference4\" />
     <WCFMetadataStorage Include="Connected Services\ServiceReference5\" />
     <WCFMetadataStorage Include="Connected Services\ServicioClientes\" />
+    <WCFMetadataStorage Include="Connected Services\ServicioExterno\" />
     <WCFMetadataStorage Include="Connected Services\ServicioProductos\" />
     <WCFMetadataStorage Include="Connected Services\ServicioUsuarios\" />
   </ItemGroup>
