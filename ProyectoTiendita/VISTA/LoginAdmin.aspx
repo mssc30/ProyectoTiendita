@@ -151,9 +151,9 @@
                 <tr>
                 <th>
                     <div class="container">
-                        <div class="row row-cols-4">
+                        <div class="row row-cols-3">
                         <div class="col"></div>
-                        <div class="col"><asp:Button class="btn btn-outline-light" ID="btnWebServer" runat="server" Text="Indicadores Económicos" OnClick="btnWebServer_Click"/></div>
+                       <!--  <div class="col"><asp:Button class="btn btn-outline-light" ID="btnWebServer" runat="server" Text="Indicadores Económicos" OnClick="btnWebServer_Click"/></div> -->
                         <div class="col"><asp:Button class="btn btn-outline-light" ID="btnIniciarSesion" runat="server" OnClick="btnIniciarSesion_Click" Text="Inicio" /></div>
                         <div class="col"></div>
                         </div>

@@ -100,7 +100,7 @@ namespace ProyectoTiendita.DATOS
 
         }
 
-        public Boolean agregar(Producto producto)
+        public bool agregar(Producto producto)
         {
             ///CREAR, MODIFICAR Y USAR LA CONEXION
             MySqlConnection cn = new MySqlConnection();
